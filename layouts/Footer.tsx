@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { formatYear } from '@/utils/date';
 
 const Footer = () => (
