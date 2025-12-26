@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { formatYear } from '@/utils/date';
 
 const Footer = () => (
@@ -7,4 +6,4 @@ const Footer = () => (
   </footer>
 );
 
-export default memo(Footer);
+export default Footer;

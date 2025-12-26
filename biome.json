@@ -1,0 +1,162 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json"],
+    "ignoreUnknown": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "auto"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingCommas": "none",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "useJsxKeyInIterable": "error",
+        "noUndeclaredDependencies": "off",
+        "noUnknownProperty": "error",
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "error",
+        "useParseIntRadix": "error",
+        "noUnusedLabels": "error",
+        "noUnreachable": "error",
+        "noUndeclaredVariables": "off"
+      },
+      "style": {
+        "useConst": "error",
+        "useTemplate": "error",
+        "useShorthandFunctionType": "error",
+        "noNonNullAssertion": "warn",
+        "noParameterAssign": "error",
+        "useNumberNamespace": "error",
+        "useExponentiationOperator": "error",
+        "useReactFunctionComponents": "error",
+        "noNestedTernary": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "noUselessElse": "error",
+        "useDefaultParameterLast": "error",
+        "useExplicitLengthCheck": "error",
+        "useNamingConvention": "error",
+        "noYodaExpression": "error",
+        "useSymbolDescription": "error",
+        "useConsistentObjectDefinitions": "error",
+        "noNegationElse": "error",
+        "useCollapsedElseIf": "error",
+        "useArrayLiterals": "error",
+        "useDefaultSwitchClause": "error"
+      },
+      "suspicious": {
+        "noDoubleEquals": "error",
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn",
+        "noConsole": "off",
+        "noEmptyBlockStatements": "error",
+        "noRedeclare": "error",
+        "useAwait": "error",
+        "noConfusingVoidType": "error",
+        "noWith": "error",
+        "noVar": "error",
+        "noPrototypeBuiltins": "error",
+        "noAlert": "warn",
+        "useGuardForIn": "error",
+        "useDefaultSwitchClauseLast": "error",
+        "noDuplicateAtImportRules": "error",
+        "useIterableCallbackReturn": "error",
+        "noIrregularWhitespace": "error"
+      },
+      "complexity": {
+        "noForEach": "off",
+        "noBannedTypes": "error",
+        "noUselessRename": "error",
+        "useLiteralKeys": "error",
+        "useOptionalChain": "error",
+        "noUselessTernary": "error",
+        "noUselessSwitchCase": "error",
+        "useArrowFunction": "error",
+        "noUselessFragments": "error",
+        "noArguments": "error",
+        "useNumericLiterals": "error",
+        "noAdjacentSpacesInRegex": "error",
+        "noExtraBooleanCast": "error",
+        "noVoid": "error",
+        "noExcessiveLinesPerFunction": {
+          "level": "error",
+          "options": {
+            "maxLines": 100,
+            "skipBlankLines": true
+          }
+        }
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "noLabelWithoutControl": "off",
+        "noSvgWithoutTitle": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
+      },
+      "nursery": {
+        "noProto": "error",
+        "noTernary": "off",
+        "noShadow": "error",
+        "noImportCycles": "error",
+        "noUnresolvedImports": "off",
+        "noIncrementDecrement": "error",
+        "noContinue": "error",
+        "useConsistentArrowReturn": "error",
+        "noUnusedExpressions": "error",
+        "useMaxParams": {
+          "level": "error",
+          "options": {
+            "max": 4
+          }
+        }
+      }
+    }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":URL:",
+              ":NODE:",
+              ":BUN:",
+              ":PACKAGE_WITH_PROTOCOL:",
+              ":PACKAGE:",
+              ":ALIAS:",
+              "src/**",
+              "../*",
+              "./*",
+              ":INDEX:"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
