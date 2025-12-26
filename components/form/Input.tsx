@@ -1,4 +1,4 @@
-import { memo, type DetailedHTMLProps, type InputHTMLAttributes } from 'react';
+import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { cn } from '@/utils';
 
 interface InputProps
@@ -55,4 +55,4 @@ const Input = ({
   </div>
 );
 
-export default memo(Input);
+export default Input;
