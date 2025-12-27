@@ -10,7 +10,9 @@
     "lint": "biome check",
     "lint:fix": "biome check --write .",
     "format": "biome format --write",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "lint-staged": "lint-staged",
+    "prepare": "husky"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -28,6 +30,7 @@
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
