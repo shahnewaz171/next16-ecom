@@ -4,8 +4,21 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   cacheComponents: true,
   transpilePackages: [],
+  typedRoutes: true,
+  turbopack: {
+    debugIds: true
+  },
+  images: {
+    maximumRedirects: 3,
+    localPatterns: [
+      {
+        pathname: '/assets/**'
+      }
+    ]
+  },
   experimental: {
-    optimizePackageImports: []
+    optimizePackageImports: [],
+    turbopackFileSystemCacheForDev: true
   },
   compiler: {
     removeConsole: {

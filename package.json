@@ -6,13 +6,15 @@
     "predev": "biome check .",
     "dev": "next dev",
     "build": "next build",
+    "build:debug": "next build --debug-prerender",
     "start": "next start",
     "lint": "biome check",
     "lint:fix": "biome check --write .",
     "format": "biome format --write",
     "format:check": "biome format .",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "analyze": "PORT=3001 next experimental-analyze"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -31,6 +33,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "next-devtools-mcp": "^0.3.7",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
