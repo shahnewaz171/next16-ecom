@@ -40,6 +40,7 @@ interface ButtonProps
   loading?: boolean;
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
+  loadingPosition?: 'left' | 'right';
 }
 
 const Button = ({
@@ -51,6 +52,7 @@ const Button = ({
   loading,
   icon,
   iconPosition = 'left',
+  loadingPosition = 'left',
   disabled,
   ...props
 }: ButtonProps) => {
@@ -64,9 +66,10 @@ const Button = ({
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
-      {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+      {loading && loadingPosition === 'left' && <Loader2 className="h-4 w-4 animate-spin" />}
       {!loading && icon && iconPosition === 'left' && icon}
       {children}
+      {loading && loadingPosition === 'right' && <Loader2 className="h-4 w-4 animate-spin" />}
       {!loading && icon && iconPosition === 'right' && icon}
     </button>
   );

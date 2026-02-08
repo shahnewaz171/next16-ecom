@@ -30,3 +30,15 @@ export function ThemeToggle({ className }: { className?: string }) {
     </button>
   );
 }
+
+export function ThemeToggleSkeleton({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        'relative inline-flex h-10 w-10 animate-pulse items-center justify-center rounded-full',
+        'bg-secondary',
+        className
+      )}
+    />
+  );
+}

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import Button from '@/components/ui/Button';
 import { CartDrawer } from '@/components/ui/CartDrawer';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { ThemeToggle, ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
+import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
 import TopSearchBar, { TopSearchSkeleton } from '@/layouts/TopSearchBar';
 
 export default function Navbar() {
@@ -21,7 +22,9 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center space-x-4">
-          <ThemeToggle />
+          <Suspense fallback={<ThemeToggleSkeleton />}>
+            <ThemeToggle />
+          </Suspense>
 
           <Link href="/products">
             <Button variant="ghost" size="sm">
@@ -29,13 +32,13 @@ export default function Navbar() {
             </Button>
           </Link>
 
-          <Link href="/login">
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-          </Link>
-
+          {/* card */}
           <CartDrawer />
+
+          {/* user profile */}
+          <Suspense fallback={<UserProfileSkeleton />}>
+            <UserProfile />
+          </Suspense>
         </div>
       </nav>
     </header>
