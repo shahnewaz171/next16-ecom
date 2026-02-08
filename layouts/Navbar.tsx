@@ -1,28 +1,43 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
+import Button from '@/components/ui/Button';
+import { CartDrawer } from '@/components/ui/CartDrawer';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import TopSearchBar, { TopSearchSkeleton } from '@/layouts/TopSearchBar';
 
-const Navbar = () => (
-  <nav className="bg-blue-600 text-white p-4">
-    <div className="container mx-auto flex justify-between items-center">
-      <h1 className="text-xl font-bold">React 19 Starter</h1>
-      <nav>
-        <ul className="flex space-x-4">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/login" className="hover:underline">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link href="/register" className="hover:underline">
-              Signup
-            </Link>
-          </li>
-        </ul>
+export default function Navbar() {
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+      <nav className="container mx-auto flex h-16 items-center justify-between px-4">
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2">
+          <div className="text-2xl font-bold text-gradient">Commerce</div>
+        </Link>
+
+        {/* Search Bar - Desktop */}
+        <Suspense fallback={<TopSearchSkeleton />}>
+          <TopSearchBar />
+        </Suspense>
+
+        {/* Actions */}
+        <div className="flex items-center space-x-4">
+          <ThemeToggle />
+
+          <Link href="/products">
+            <Button variant="ghost" size="sm">
+              Products
+            </Button>
+          </Link>
+
+          <Link href="/login">
+            <Button variant="outline" size="sm">
+              Sign In
+            </Button>
+          </Link>
+
+          <CartDrawer />
+        </div>
       </nav>
-    </div>
-  </nav>
-);
-
-export default Navbar;
+    </header>
+  );
+}

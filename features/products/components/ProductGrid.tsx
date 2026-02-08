@@ -1,0 +1,27 @@
+import type { Product } from '@/types/product';
+import { ProductCard } from './ProductCard';
+
+interface ProductGridProps {
+  products: Product[];
+}
+
+export function ProductGrid({ products }: ProductGridProps) {
+  if (products.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground text-lg">No products found</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Try adjusting your filters or search query
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {products.map((product, index) => (
+        <ProductCard key={product.id} product={product} index={index} />
+      ))}
+    </div>
+  );
+}

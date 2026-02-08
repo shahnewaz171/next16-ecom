@@ -1,1 +1,249 @@
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --radius: 0.5rem;
+}
+
+@layer base {
+    /* Dark Mode */
+  :root,
+  :root.dark {
+    --background: oklch(0.14 0.04 264.5);
+    --foreground: oklch(0.98 0.005 260);
+    
+    --card: oklch(0.14 0.04 264.5);
+    --card-foreground: oklch(0.98 0.005 260);
+    
+    --popover: oklch(0.14 0.04 264.5);
+    --popover-foreground: oklch(0.98 0.005 260);
+    
+    --primary: oklch(0.70 0.20 260);
+    --primary-foreground: oklch(0.205 0.032 264.5);
+    
+    --secondary: oklch(0.27 0.05 260);
+    --secondary-foreground: oklch(0.98 0.005 260);
+    
+    --muted: oklch(0.27 0.05 260);
+    --muted-foreground: oklch(0.70 0.04 260);
+    
+    --accent: oklch(0.27 0.05 260);
+    --accent-foreground: oklch(0.98 0.005 260);
+    
+    --destructive: oklch(0.45 0.18 28);
+    --destructive-foreground: oklch(0.98 0 0);
+    
+    --border: oklch(0.27 0.05 260);
+    --input: oklch(0.27 0.05 260);
+    --ring: oklch(0.55 0.20 260);
+    
+    --success: oklch(0.60 0.15 142);
+    --success-foreground: oklch(0.14 0.04 142);
+    --warning: oklch(0.7 0.19 55);
+    --warning-foreground: oklch(0.95 0.07 55);
+    --info: oklch(0.6 0.18 236);
+    --info-foreground: oklch(0.98 0.005 260);
+    
+    --gradient-start: oklch(0.70 0.20 260);
+    --gradient-end: oklch(0.75 0.24 290);
+  }
+  
+  /* Light Mode */
+  :root.light {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.205 0.032 264.5);
+    
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.205 0.032 264.5);
+    
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.205 0.032 264.5);
+    
+    --primary: oklch(0.623 0.214 260);
+    --primary-foreground: oklch(0.98 0.005 260);
+    
+    --secondary: oklch(0.97 0.01 260);
+    --secondary-foreground: oklch(0.205 0.032 264.5);
+    
+    --muted: oklch(0.97 0.01 260);
+    --muted-foreground: oklch(0.55 0.04 260);
+    
+    --accent: oklch(0.97 0.01 260);
+    --accent-foreground: oklch(0.205 0.032 264.5);
+    
+    --destructive: oklch(0.62 0.22 28);
+    --destructive-foreground: oklch(0.98 0 0);
+    
+    --border: oklch(0.92 0.015 260);
+    --input: oklch(0.92 0.015 260);
+    --ring: oklch(0.623 0.214 260);
+    
+    --success: oklch(0.53 0.17 142);
+    --success-foreground: oklch(0.98 0 0);
+    --warning: oklch(0.7 0.19 55);
+    --warning-foreground: oklch(0.95 0.07 55);
+    --info: oklch(0.6 0.18 236);
+    --info-foreground: oklch(0.98 0.005 260);
+    
+    --gradient-start: oklch(0.623 0.214 260);
+    --gradient-end: oklch(0.65 0.25 290);
+  }
+}
+
+
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    /* Transition removed to prevent color skewing/flashing during theme switch? 
+       Actually user complained about flickering, but transition can mask it or make it worse.
+       Typical advice is to avoid transition on background-color for theme switch if possible,
+       or keep it short. I will keep it for now as it feels premium. */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    h3 {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  @media (min-width: 1024px) {
+    h4 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: var(--muted);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--muted-foreground), transparent 70%);
+    border-radius: 9999px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--muted-foreground), transparent 50%);
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-gradient {
+    background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Glass morphism */
+  .glass {
+    /* Using color-mix for opacity */
+    background-color: color-mix(in srgb, var(--background), transparent 20%);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--border), transparent 50%);
+  }
+  
+  /* Animation utilities */
+  .animate-in {
+    animation: animateIn 0.3s ease-out;
+  }
+  
+  @keyframes animateIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

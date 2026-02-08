@@ -84,7 +84,8 @@
         "useDefaultSwitchClauseLast": "error",
         "noDuplicateAtImportRules": "error",
         "useIterableCallbackReturn": "error",
-        "noIrregularWhitespace": "error"
+        "noIrregularWhitespace": "error",
+        "noUselessEscapeInString": "error"
       },
       "complexity": {
         "noForEach": "off",
