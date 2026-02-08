@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import LinkStatus from '@/components/ui/LinkStatus';
 import getSearchQuery from '@/features/products/helpers/getSearchQuery';
 import type { ProductFilters } from '@/types/product';
 import { getUidWithPrefix } from '@/utils';
@@ -47,7 +48,9 @@ export function Pagination({ currentPage, totalPages, searchParams }: Pagination
         className={cn(isFirstPage && 'pointer-events-none')}
       >
         <Button variant="outline" size="icon" disabled={isFirstPage}>
-          <ChevronLeft className="h-4 w-4" />
+          <LinkStatus rootClassName="gap-1" size={16}>
+            <ChevronLeft className="h-4 w-4" />
+          </LinkStatus>
         </Button>
       </Link>
 
@@ -79,8 +82,10 @@ export function Pagination({ currentPage, totalPages, searchParams }: Pagination
         href={getSearchQuery('page', currentPage + 1, searchParams)}
         className={cn(isLastPage && 'pointer-events-none')}
       >
-        <Button variant="outline" size="icon" disabled={isLastPage}>
-          <ChevronRight className="h-4 w-4" />
+        <Button variant="outline" size="icon" disabled={isLastPage} className="gap-1">
+          <LinkStatus rootClassName="gap-1" size={16}>
+            <ChevronRight className="h-4 w-4" />
+          </LinkStatus>
         </Button>
       </Link>
     </div>

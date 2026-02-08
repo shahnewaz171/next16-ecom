@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Button from '@/components/ui/Button';
+import LinkStatus from '@/components/ui/LinkStatus';
 import { CategoriesSkeleton, SortOptionsSkeleton } from '@/components/ui/skeleton';
 import { getCategories, getSortOptions } from '@/features/category/category-services';
 import getSearchQuery from '@/features/products/helpers/getSearchQuery';
@@ -45,11 +46,11 @@ async function Categories({ searchParams }: { searchParams: ProductFiltersType }
       className={cn(
         'relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
         searchParams.category === value
-          ? 'bg-primary text-primary-foreground'
+          ? 'bg-primary text-primary-foreground pointer-events-none'
           : 'hover:text-foreground'
       )}
     >
-      {value}
+      <LinkStatus>{value}</LinkStatus>
     </Link>
   ));
 }
@@ -60,16 +61,21 @@ async function SortOptions({ searchParams }: { searchParams: ProductFiltersType 
 
   return options.map((option) => {
     const { icon: Icon } = option;
+    const isActive = sort === option.value;
 
     return (
-      <Link key={option.value} href={getSearchQuery('sort', option.value, searchParams)}>
+      <Link
+        key={option.value}
+        href={getSearchQuery('sort', option.value, searchParams)}
+        className={cn(isActive && 'pointer-events-none')}
+      >
         <Button
-          variant={sort === option.value ? 'default' : 'outline'}
+          variant={isActive ? 'default' : 'outline'}
           size="sm"
           icon={<Icon className="h-4 w-4" />}
           iconPosition="left"
         >
-          {option.label}
+          <LinkStatus>{option.label}</LinkStatus>
         </Button>
       </Link>
     );

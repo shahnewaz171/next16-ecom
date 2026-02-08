@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import LinkStatus from '@/components/ui/LinkStatus';
 import { getCategories } from '@/features/category/category-services';
 
 const Categories = async () => {
@@ -13,7 +14,7 @@ const Categories = async () => {
         clickable={true}
         className="hover:bg-primary hover:text-primary-foreground transition-colors"
       >
-        {category}
+        <LinkStatus className="dark:text-white!">{category}</LinkStatus>
       </Badge>
     </Link>
   ));
