@@ -100,7 +100,7 @@ export default function LoginForm() {
                   <label htmlFor="password" className="text-sm font-medium">
                     Password
                   </label>
-                  <Link href="/" className="text-sm text-primary hover:underline">
+                  <Link href="#" className="text-sm text-primary hover:underline">
                     Forgot password?
                   </Link>
                 </div>
@@ -161,7 +161,7 @@ export default function LoginForm() {
             {/* Sign Up Link */}
             <div className="text-center text-sm">
               <span className="text-muted-foreground">Don't have an account? </span>
-              <Link href="/register" className="text-primary hover:underline font-medium">
+              <Link href="#" className="text-primary hover:underline font-medium po">
                 Sign up
               </Link>
             </div>

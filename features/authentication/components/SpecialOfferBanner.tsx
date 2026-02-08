@@ -25,7 +25,7 @@ export function SpecialOfferBanner() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/register">
+              <Link href="/login">
                 <Button
                   variant="gradient"
                   size="lg"
