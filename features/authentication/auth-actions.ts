@@ -3,6 +3,7 @@
 import type { Route } from 'next';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { checkUserLoggedIn } from '@/features/authentication/auth-queries';
 import { simulateDelay } from '@/utils';
 
 export const submitLoginForm = async (_email: string, redirectUrl: string) => {
@@ -21,6 +22,17 @@ export const submitLoginForm = async (_email: string, redirectUrl: string) => {
 
   cookieStore.set('user_id', crypto.randomUUID());
   redirect((redirectUrl || '/profile') as Route);
+};
+
+export const verifyAuth = async (redirectUrl?: string) => {
+  const isLoggedIn = await checkUserLoggedIn();
+
+  if (!isLoggedIn) {
+    const loginPath = redirectUrl ? `/login?redirectUrl=${redirectUrl}` : '/login';
+    redirect(loginPath as Route);
+  }
+
+  return isLoggedIn;
 };
 
 export const logout = async () => {

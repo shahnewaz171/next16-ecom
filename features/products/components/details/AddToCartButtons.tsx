@@ -1,14 +1,18 @@
 'use client';
 
 import { ShoppingCart } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/Button';
+import { verifyAuth } from '@/features/authentication/auth-actions';
 import { useCart } from '@/store/context/CartContext';
 import type { Product } from '@/types/product';
 
 const AddToCartButtons = ({ product }: { product: Product }) => {
   const { addToCart, isInCart } = useCart() || {};
+  const pathname = usePathname();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    await verifyAuth(pathname);
     addToCart?.(product);
   };
 
