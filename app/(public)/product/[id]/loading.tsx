@@ -1,9 +1,5 @@
-import { ProductCardSkeleton } from '@/components/ui/skeleton';
+import { ProductDetailsSkeleton } from '@/features/products/components/details/ProductDetails';
 
-const Loading = () => (
-  <div className="py-8">
-    <ProductCardSkeleton />
-  </div>
-);
+const Loading = () => <ProductDetailsSkeleton />;
 
 export default Loading;
