@@ -1,4 +1,4 @@
-import { products } from '@/data/products';
+import { products } from '@/features/products/data/products';
 import type { PaginatedProducts, Product, ProductFilters, SortOption } from '@/types/product';
 import { simulateDelay } from '@/utils';
 
