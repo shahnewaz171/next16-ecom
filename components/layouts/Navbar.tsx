@@ -4,6 +4,7 @@ import TopSearchBar, { TopSearchSkeleton } from '@/components/layouts/TopSearchB
 import Button from '@/components/ui/Button';
 import { CartDrawer } from '@/components/ui/CartDrawer';
 import { ThemeToggle, ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
+import { checkUserLoggedIn } from '@/features/authentication/auth-queries';
 import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
 
 export default function Navbar() {
@@ -32,8 +33,10 @@ export default function Navbar() {
             </Button>
           </Link>
 
-          {/* card */}
-          <CartDrawer />
+          {/* cart */}
+          <Suspense fallback={<CartDrawerButtonSkeleton />}>
+            <CartDrawerButtonWrapper />
+          </Suspense>
 
           {/* user profile */}
           <Suspense fallback={<UserProfileSkeleton />}>
@@ -42,5 +45,22 @@ export default function Navbar() {
         </div>
       </nav>
     </header>
+  );
+}
+
+async function CartDrawerButtonWrapper() {
+  const isLoggedIn = await checkUserLoggedIn();
+
+  if (!isLoggedIn) return null;
+
+  return <CartDrawer />;
+}
+
+function CartDrawerButtonSkeleton() {
+  return (
+    <div className="relative">
+      <div className="w-5 h-5 bg-muted rounded animate-pulse" />
+      <div className="absolute -top-2 -right-2 w-4 h-4 bg-destructive rounded-full animate-pulse" />
+    </div>
   );
 }
