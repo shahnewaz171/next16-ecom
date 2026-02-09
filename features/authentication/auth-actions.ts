@@ -20,7 +20,7 @@ export const submitLoginForm = async (_email: string, redirectUrl: string) => {
   const cookieStore = await cookies();
 
   cookieStore.set('user_id', crypto.randomUUID());
-  redirect((redirectUrl || '/products') as Route);
+  redirect((redirectUrl || '/profile') as Route);
 };
 
 export const logout = async () => {

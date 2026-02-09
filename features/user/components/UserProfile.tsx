@@ -19,7 +19,13 @@ const UserProfile = async () => {
 
   return (
     <div className="flex items-center space-x-2">
-      <UserRound aria-hidden className="size-8 rounded-full bg-muted text-primary" />
+      <Link
+        href="/profile"
+        title="View Profile"
+        className="flex items-center justify-center size-9  rounded-full bg-muted text-primary hover:ring-2 hover:ring-primary/30 transition-all"
+      >
+        <UserRound aria-hidden className="size-5" />
+      </Link>
       <div className="text-sm">
         <div className="font-medium">{user.name}</div>
 
