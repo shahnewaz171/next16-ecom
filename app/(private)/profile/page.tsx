@@ -24,8 +24,8 @@ export default async function ProfilePage() {
           {/* Avatar */}
           <div className="flex flex-col items-center gap-3">
             <div className="relative">
-              <div className="size-24 rounded-full bg-linear-to-br from-primary/30 to-accent/30 flex items-center justify-center ring-4 ring-primary/20">
-                <UserRound className="size-12 text-primary" />
+              <div className="size-20 sm:size-24 rounded-full bg-linear-to-br from-primary/30 to-accent/30 flex items-center justify-center ring-4 ring-primary/20">
+                <UserRound className="size-10 sm:size-12 text-primary" />
               </div>
               <div className="absolute -bottom-1 -right-1 size-6 rounded-full bg-(--success) border-2 border-background" />
             </div>
@@ -37,7 +37,7 @@ export default async function ProfilePage() {
           {/* User Info */}
           <div className="flex-1 space-y-4">
             <div>
-              <h2 className="text-2xl font-bold">{name}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold">{name}</h2>
               <p className="text-muted-foreground text-sm">Customer ID: {id}</p>
             </div>
 
@@ -62,7 +62,7 @@ export default async function ProfilePage() {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-row md:flex-col gap-2">
+          <div className="flex flex-row items-center md:flex-col gap-4">
             <Button variant="outline" size="sm" icon={<Settings className="size-4" />}>
               Edit Profile
             </Button>

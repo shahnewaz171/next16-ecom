@@ -21,12 +21,12 @@ export default function Navbar() {
         </Suspense>
 
         {/* Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-4">
           <Suspense fallback={<ThemeToggleSkeleton />}>
             <ThemeToggle />
           </Suspense>
 
-          <Link href="/products">
+          <Link href="/products" className="hidden sm:block">
             <Button variant="ghost" size="sm">
               Products
             </Button>

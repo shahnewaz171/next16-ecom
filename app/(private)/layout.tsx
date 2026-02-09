@@ -18,9 +18,11 @@ const PrivateLayout = ({
 }>) => (
   <div className="container mx-auto px-4 py-8 max-w-6xl">
     {/* Page Header */}
-    <div className="mb-8">
-      <h1 className="text-3xl font-bold text-gradient">My Account</h1>
-      <p className="text-muted-foreground mt-1">Manage your profile and view your activity</p>
+    <div className="mb-6 sm:mb-8">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gradient">My Account</h1>
+      <p className="text-sm sm:text-base text-muted-foreground mt-1">
+        Manage your profile and view your activity
+      </p>
     </div>
 
     <div className="space-y-8">

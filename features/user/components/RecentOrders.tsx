@@ -10,7 +10,7 @@ const RecentOrders = async () => {
   return recentOrders.map((order) => (
     <div
       key={order.id}
-      className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
+      className="flex flex-wrap gap-y-2 items-center justify-between p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
     >
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-muted">

@@ -22,11 +22,11 @@ const UserProfile = async () => {
       <Link
         href="/profile"
         title="View Profile"
-        className="flex items-center justify-center size-9  rounded-full bg-muted text-primary hover:ring-2 hover:ring-primary/30 transition-all"
+        className="flex items-center justify-center size-9 rounded-full bg-muted text-primary hover:ring-2 hover:ring-primary/30 transition-all"
       >
         <UserRound aria-hidden className="size-5" />
       </Link>
-      <div className="text-sm">
+      <div className="hidden sm:block text-sm">
         <div className="font-medium">{user.name}</div>
 
         {/* logout */}

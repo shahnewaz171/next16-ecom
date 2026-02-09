@@ -10,9 +10,9 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const { name, description, price, category, image, rating, reviews, inStock } = product;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 mb-10 sm:mb-16">
       {/* Product Image */}
-      <div className="relative aspect-square max-h-125 w-full rounded-lg overflow-hidden bg-muted">
+      <div className="relative aspect-square max-h-75 sm:max-h-125 w-full rounded-lg overflow-hidden bg-muted">
         <Image
           src={image}
           alt={name}
@@ -29,7 +29,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
           {category}
         </Badge>
 
-        <h1 className="text-4xl font-bold mb-4">{name}</h1>
+        <h1 className="text-2xl sm:text-4xl font-bold mb-4">{name}</h1>
 
         {/* Rating */}
         {rating && (
@@ -45,7 +45,9 @@ const ProductDetails = ({ product }: { product: Product }) => {
         <p className="text-lg text-muted-foreground mb-8">{description}</p>
 
         {/* Price */}
-        <div className="text-5xl font-bold text-primary mb-8">${price.toFixed(2)}</div>
+        <div className="text-3xl sm:text-5xl font-bold text-primary mb-6 sm:mb-8">
+          ${price.toFixed(2)}
+        </div>
 
         {/* Stock Status */}
         <div className="mb-8">
@@ -84,9 +86,9 @@ export default ProductDetails;
 export function ProductDetailsSkeleton() {
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 mb-10 sm:mb-16 mt-6">
         {/* Image Skeleton */}
-        <div className="relative aspect-square max-h-125 w-full rounded-lg overflow-hidden bg-muted animate-pulse" />
+        <div className="relative aspect-square max-h-75 sm:max-h-125 w-full rounded-lg overflow-hidden bg-muted animate-pulse" />
 
         {/* Info Skeleton */}
         <div className="flex flex-col gap-6">

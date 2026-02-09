@@ -12,9 +12,11 @@ export default function HomePage() {
   return (
     <div className="py-8 space-y-16">
       {/* Hero Section */}
-      <section className="text-center py-12">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">Welcome to Commerce</h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+      <section className="text-center py-8 sm:py-12">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-gradient">
+          Welcome to Commerce
+        </h1>
+        <p className="text-base sm:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
           Discover amazing products with our Next.js 16 powered platform featuring partial
           pre-rendering and advanced caching
         </p>
@@ -41,7 +43,7 @@ export default function HomePage() {
       <section>
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Featured Products</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2">Featured Products</h2>
             <p className="text-muted-foreground">Our top-rated and most popular items</p>
           </div>
           <Link href="/products">
@@ -55,7 +57,7 @@ export default function HomePage() {
 
       {/* Categories Grid */}
       <section>
-        <h2 className="text-3xl font-bold mb-6">Shop by Category</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Shop by Category</h2>
         <Suspense fallback={<ShopByCategorySkeleton />}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Categories />
