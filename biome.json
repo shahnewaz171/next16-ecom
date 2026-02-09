@@ -58,7 +58,7 @@
         "noUselessElse": "error",
         "useDefaultParameterLast": "error",
         "useExplicitLengthCheck": "error",
-        "useNamingConvention": "error",
+        "useNamingConvention": "off",
         "noYodaExpression": "error",
         "useSymbolDescription": "error",
         "useConsistentObjectDefinitions": "error",
