@@ -5,12 +5,12 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import type React from 'react';
+import { BoundaryProvider } from '@/components/core/BoundaryProvider';
+import NotificationProvider from '@/components/core/NotificationProvider';
+import { ThemeProvider } from '@/components/core/ThemeProvider';
+import Footer from '@/components/layouts/Footer';
+import Navbar from '@/components/layouts/Navbar';
 import BoundaryToggle from '@/features/boundary/BoundaryToggle';
-import Footer from '@/layouts/Footer';
-import Navbar from '@/layouts/Navbar';
-import { BoundaryProvider } from '@/providers/BoundaryProvider';
-import NotificationProvider from '@/providers/NotificationProvider';
-import { ThemeProvider } from '@/providers/ThemeProvider';
 import { CartProvider } from '@/store/context/CartContext';
 import { THEME_COOKIE_NAME, type Theme } from '@/utils/theme';
 

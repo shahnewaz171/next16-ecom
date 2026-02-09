@@ -1,8 +1,8 @@
 'use client';
 
 import { createContext, use, useSyncExternalStore } from 'react';
-import type { ThemeContextType } from '@/components/types/theme';
-import { themeStore } from '@/providers/helpers/themeStore';
+import { themeStore } from '@/helpers/theme/themeStore';
+import type { ThemeContextType } from '@/types/theme';
 import type { Theme } from '@/utils/theme';
 
 const ThemeContext = createContext<ThemeContextType | null>(null);

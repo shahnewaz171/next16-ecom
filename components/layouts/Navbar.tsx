@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
+import TopSearchBar, { TopSearchSkeleton } from '@/components/layouts/TopSearchBar';
 import Button from '@/components/ui/Button';
 import { CartDrawer } from '@/components/ui/CartDrawer';
 import { ThemeToggle, ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
 import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
-import TopSearchBar, { TopSearchSkeleton } from '@/layouts/TopSearchBar';
 
 export default function Navbar() {
   return (

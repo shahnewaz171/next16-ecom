@@ -1,4 +1,4 @@
-import setThemeToCookie from '@/components/actions/setThemeToCookie';
+import setThemeToCookie from '@/helpers/theme/setThemeToCookie';
 import { DEFAULT_THEME, type Theme } from '@/utils/theme';
 
 let listeners: Array<() => void> = [];

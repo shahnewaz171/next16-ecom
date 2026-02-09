@@ -15,7 +15,7 @@ export default function ProfileLoading() {
           {/* User Info */}
           <div className="flex-1 space-y-4">
             <div>
-              <div className="h-6 w-48 bg-muted rounded" />
+              <div className="h-6 w-48 bg-muted rounded mb-2" />
               <div className="h-4 w-32 bg-muted rounded" />
             </div>
 

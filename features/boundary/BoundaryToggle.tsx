@@ -1,7 +1,7 @@
 'use client';
 
 import { Droplets, Layers, Square } from 'lucide-react';
-import { type BoundaryMode, useBoundaryMode } from '@/providers/BoundaryProvider';
+import { type BoundaryMode, useBoundaryMode } from '@/components/core/BoundaryProvider';
 import { cn } from '@/utils/cn';
 
 const modes = [

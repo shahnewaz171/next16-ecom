@@ -30,7 +30,7 @@ export default AccountStatus;
 
 export function AccountStatusSkeleton() {
   return (
-    <CardContent className="space-y-3 animate-pulse">
+    <CardContent className="space-y-3 animate-pulse mt-1">
       {Array.from({ length: 3 }).map((_, i) => (
         <div
           key={getUidWithPrefix('account-status-skeleton', i)}
