@@ -12,6 +12,12 @@ export async function SpecialOfferBanner() {
 
   if (!isLoggedIn) return <GeneralBanner />;
 
+  return <SpecialOfferBannerDetails />;
+}
+
+async function SpecialOfferBannerDetails() {
+  'use cache';
+
   const user = await getUserProfile();
 
   const { first_name } = user || {};

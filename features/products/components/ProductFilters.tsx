@@ -5,18 +5,11 @@ import Button from '@/components/ui/Button';
 import LinkStatus from '@/components/ui/LinkStatus';
 import { CategoriesSkeleton, SortOptionsSkeleton } from '@/components/ui/skeleton';
 import { getCategories, getSortOptions } from '@/features/category/category-services';
-import { formattedSearchParams } from '@/features/products/helpers';
 import getSearchQuery from '@/features/products/helpers/getSearchQuery';
 import type { ProductFilters as ProductFiltersType } from '@/types/product';
 import { cn } from '@/utils/cn';
 
-type SearchParams = Promise<ProductFiltersType>;
-
-export async function ProductFilters({ searchParams }: { searchParams: SearchParams }) {
-  const urlSearchParams = await searchParams;
-
-  const params = formattedSearchParams(urlSearchParams);
-
+export function ProductFilters({ searchParams }: { searchParams: ProductFiltersType }) {
   return (
     <div className="space-y-6">
       {/* Category Filter */}
@@ -25,7 +18,7 @@ export async function ProductFilters({ searchParams }: { searchParams: SearchPar
         <div className="w-full">
           <Suspense fallback={<CategoriesSkeleton />}>
             <div className="flex flex-wrap h-auto gap-2 bg-transparent p-0">
-              <Categories searchParams={params} />
+              <Categories searchParams={searchParams} />
             </div>
           </Suspense>
         </div>
@@ -36,7 +29,7 @@ export async function ProductFilters({ searchParams }: { searchParams: SearchPar
         <h3 className="text-sm font-semibold mb-3">Sort By</h3>
         <Suspense fallback={<SortOptionsSkeleton count={4} />}>
           <div className="flex flex-wrap gap-2">
-            <SortOptions searchParams={params} />
+            <SortOptions searchParams={searchParams} />
           </div>
         </Suspense>
       </div>

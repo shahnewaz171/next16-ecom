@@ -6,8 +6,10 @@ import LogoutButton from '@/features/authentication/components/LogoutButton';
 import { getUserProfile } from '@/features/user/user-queries';
 
 export default async function ProfilePage() {
+  'use cache';
+
   const user = await getUserProfile();
-  const { id, name, email, phone, address, birthDate } = user || {};
+  const { name, email, phone, address, birthDate } = user || {};
 
   const memberSince =
     birthDate &&
@@ -38,7 +40,6 @@ export default async function ProfilePage() {
           <div className="flex-1 space-y-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-bold">{name}</h2>
-              <p className="text-muted-foreground text-sm">Customer ID: {id}</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

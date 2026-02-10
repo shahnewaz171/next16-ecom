@@ -34,9 +34,13 @@ export default function ProductPage({ params }: PageProps<'/product/[id]'>) {
 }
 
 async function ProductDetailsWrapper({ params }: { params: Promise<{ id: string }> }) {
-  'use cache';
-
   const { id } = await params;
+
+  return <ProductDetailsDetails id={id} />;
+}
+
+async function ProductDetailsDetails({ id }: { id: string }) {
+  'use cache';
 
   cacheTag(`product-${id}`);
 

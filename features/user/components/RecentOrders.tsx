@@ -5,6 +5,8 @@ import { getRecentOrders } from '@/features/user/user-queries';
 import { getUidWithPrefix } from '@/utils';
 
 const RecentOrders = async () => {
+  'use cache';
+
   const recentOrders = await getRecentOrders();
 
   return recentOrders.map((order) => (

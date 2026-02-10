@@ -1,13 +1,14 @@
 import { UserRound } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import { checkUserLoggedIn } from '@/features/authentication/auth-queries';
 import LogoutButton from '@/features/authentication/components/LogoutButton';
 import { getUserProfile } from '@/features/user/user-queries';
 
 const UserProfile = async () => {
-  const user = await getUserProfile();
+  const isLoggedIn = await checkUserLoggedIn();
 
-  if (!user) {
+  if (!isLoggedIn) {
     return (
       <Link href="/login">
         <Button variant="outline" size="sm">
@@ -16,6 +17,8 @@ const UserProfile = async () => {
       </Link>
     );
   }
+
+  const user = await getUserProfile();
 
   return (
     <div className="flex items-center space-x-2">

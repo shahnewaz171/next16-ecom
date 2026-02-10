@@ -11,32 +11,49 @@ import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { formattedSearchParams } from '@/features/products/helpers';
 import { getProducts } from '@/features/products/product-services';
 import type { ProductFilters as ProductFiltersType } from '@/types/product';
+import { cn } from '@/utils/cn';
 
 type SearchParams = Promise<ProductFiltersType>;
 
 export default function ProductsPage({ searchParams }: { searchParams: SearchParams }) {
   return (
+    <Suspense
+      fallback={
+        <div className="mb-8">
+          <ProductFiltersSkeleton className="mb-8" />
+          <ProductListSkeleton />
+        </div>
+      }
+    >
+      <ProductsWrapper searchParams={searchParams} />
+    </Suspense>
+  );
+}
+
+async function ProductsWrapper({ searchParams }: { searchParams: SearchParams }) {
+  const urlSearchParams = await searchParams;
+
+  const params = formattedSearchParams(urlSearchParams);
+
+  return (
     <>
       {/* Filters */}
       <div className="mb-8">
-        <Suspense fallback={<ProductFiltersSkeleton />}>
-          <ProductFilters searchParams={searchParams} />
-        </Suspense>
+        <ProductFilters searchParams={params} />
       </div>
 
       {/* Products Grid */}
       <Suspense fallback={<ProductListSkeleton />}>
-        <ProductList searchParams={searchParams} />
+        <ProductList searchParams={params} />
       </Suspense>
     </>
   );
 }
 
-async function ProductList({ searchParams }: { searchParams: SearchParams }) {
-  const urlSearchParams = await searchParams;
-  const params = formattedSearchParams(urlSearchParams);
+async function ProductList({ searchParams }: { searchParams: ProductFiltersType }) {
+  'use cache';
 
-  const { category, sort, search, page } = params;
+  const { category, sort, search, page } = searchParams;
   const productsData = await getProducts({ category, search, sort, page });
   const { products = [], totalProducts, currentPage, totalPages } = productsData;
 
@@ -49,11 +66,7 @@ async function ProductList({ searchParams }: { searchParams: SearchParams }) {
       <ProductGrid products={products} />
 
       {/* Pagination */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        searchParams={urlSearchParams}
-      />
+      <Pagination currentPage={currentPage} totalPages={totalPages} searchParams={searchParams} />
     </>
   );
 }
@@ -70,9 +83,9 @@ function ProductListSkeleton() {
   );
 }
 
-function ProductFiltersSkeleton() {
+function ProductFiltersSkeleton({ className }: { className?: string }) {
   return (
-    <div className="space-y-6">
+    <div className={cn('space-y-6', className)}>
       {/* Category Filter */}
       <div>
         <h3 className="text-sm font-semibold mb-3">

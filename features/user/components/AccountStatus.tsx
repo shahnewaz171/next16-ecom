@@ -3,6 +3,8 @@ import { CardContent } from '@/components/ui/card';
 import { getUidWithPrefix, simulateDelay } from '@/utils';
 
 const AccountStatus = async () => {
+  'use cache';
+
   await simulateDelay(600);
 
   return (

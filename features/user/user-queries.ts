@@ -1,19 +1,12 @@
 import { Heart, Package, Star, TruckIcon } from 'lucide-react';
-import { cookies } from 'next/headers';
 import { cache } from 'react';
 import { simulateDelay } from '@/utils';
 
 export const getUserProfile = cache(async () => {
   await simulateDelay(600);
 
-  const userId = (await cookies()).get('user_id')?.value;
-
-  if (!userId) {
-    return null;
-  }
-
   return {
-    id: userId,
+    id: null,
     name: 'John Doe',
     first_name: 'John',
     last_name: 'Doe',

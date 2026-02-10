@@ -5,6 +5,8 @@ import { CardContent } from '@/components/ui/card';
 import { simulateDelay } from '@/utils';
 
 const RecommendedProducts = async () => {
+  'use cache';
+
   await simulateDelay(1200);
 
   return (

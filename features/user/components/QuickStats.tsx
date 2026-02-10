@@ -5,6 +5,8 @@ import { getUidWithPrefix } from '@/utils';
 import { fadeUp } from '@/utils/motion';
 
 const QuickStats = async () => {
+  'use cache';
+
   const quickStats = await getUserStats();
 
   return (
