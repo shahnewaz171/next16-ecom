@@ -33,8 +33,6 @@ export default function ProductsPage({ searchParams }: { searchParams: SearchPar
 }
 
 async function ProductList({ searchParams }: { searchParams: SearchParams }) {
-  'use cache';
-
   const urlSearchParams = await searchParams;
   const params = formattedSearchParams(urlSearchParams);
 
