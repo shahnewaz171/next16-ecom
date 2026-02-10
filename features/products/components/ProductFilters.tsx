@@ -1,14 +1,22 @@
+import { cacheTag } from 'next/cache';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Button from '@/components/ui/Button';
 import LinkStatus from '@/components/ui/LinkStatus';
 import { CategoriesSkeleton, SortOptionsSkeleton } from '@/components/ui/skeleton';
 import { getCategories, getSortOptions } from '@/features/category/category-services';
+import { formattedSearchParams } from '@/features/products/helpers';
 import getSearchQuery from '@/features/products/helpers/getSearchQuery';
 import type { ProductFilters as ProductFiltersType } from '@/types/product';
 import { cn } from '@/utils/cn';
 
-export function ProductFilters({ searchParams }: { searchParams: ProductFiltersType }) {
+type SearchParams = Promise<ProductFiltersType>;
+
+export async function ProductFilters({ searchParams }: { searchParams: SearchParams }) {
+  const urlSearchParams = await searchParams;
+
+  const params = formattedSearchParams(urlSearchParams);
+
   return (
     <div className="space-y-6">
       {/* Category Filter */}
@@ -17,7 +25,7 @@ export function ProductFilters({ searchParams }: { searchParams: ProductFiltersT
         <div className="w-full">
           <Suspense fallback={<CategoriesSkeleton />}>
             <div className="flex flex-wrap h-auto gap-2 bg-transparent p-0">
-              <Categories searchParams={searchParams} />
+              <Categories searchParams={params} />
             </div>
           </Suspense>
         </div>
@@ -28,7 +36,7 @@ export function ProductFilters({ searchParams }: { searchParams: ProductFiltersT
         <h3 className="text-sm font-semibold mb-3">Sort By</h3>
         <Suspense fallback={<SortOptionsSkeleton count={4} />}>
           <div className="flex flex-wrap gap-2">
-            <SortOptions searchParams={searchParams} />
+            <SortOptions searchParams={params} />
           </div>
         </Suspense>
       </div>
@@ -37,6 +45,10 @@ export function ProductFilters({ searchParams }: { searchParams: ProductFiltersT
 }
 
 async function Categories({ searchParams }: { searchParams: ProductFiltersType }) {
+  'use cache';
+
+  cacheTag('categories');
+
   const categories = await getCategories();
 
   return categories.map((value) => (
@@ -57,6 +69,10 @@ async function Categories({ searchParams }: { searchParams: ProductFiltersType }
 }
 
 async function SortOptions({ searchParams }: { searchParams: ProductFiltersType }) {
+  'use cache';
+
+  cacheTag('sort-options');
+
   const { sort } = searchParams;
   const options = await getSortOptions();
 

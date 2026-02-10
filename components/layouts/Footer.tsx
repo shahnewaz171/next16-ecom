@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import { connection } from 'next/server';
 import { Suspense } from 'react';
-import { CategoriesSkeleton } from '@/components/ui/skeleton';
+import { CategoriesSkeleton, Skeleton } from '@/components/ui/skeleton';
 import Categories from '@/features/category/components/Categories';
 
 export default function Footer({ children }: { children: React.ReactNode }) {
@@ -74,7 +75,9 @@ export default function Footer({ children }: { children: React.ReactNode }) {
 
           {/* Copyright */}
           <div className="border-t pt-8 text-center text-sm text-muted-foreground">
-            <Copyright />
+            <Suspense fallback={<Skeleton className="h-4 w-32 mx-auto" />}>
+              <Copyright />
+            </Suspense>
           </div>
         </div>
       </footer>
@@ -84,8 +87,10 @@ export default function Footer({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Copyright() {
+async function Copyright() {
+  await connection();
+
   const currentYear = new Date().getFullYear();
 
-  return <p suppressHydrationWarning>© {currentYear} Commerce. All rights reserved.</p>;
+  return <p>© {currentYear} Commerce. All rights reserved.</p>;
 }

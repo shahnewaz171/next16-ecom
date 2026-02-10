@@ -1,4 +1,5 @@
 import { Home } from 'lucide-react';
+import { cacheTag } from 'next/cache';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -22,19 +23,23 @@ export function generateMetadata() {
   return products.map((item) => ({ id: item.id }));
 }
 
-export default async function ProductPage({ params }: PageProps<'/product/[id]'>) {
-  const { id } = await params;
-
+export default function ProductPage({ params }: PageProps<'/product/[id]'>) {
   return (
     <div className="py-6 sm:py-8">
       <Suspense fallback={<ProductDetailsSkeleton />}>
-        <ProductDetailsWrapper id={id} />
+        <ProductDetailsWrapper params={params} />
       </Suspense>
     </div>
   );
 }
 
-async function ProductDetailsWrapper({ id }: { id: string }) {
+async function ProductDetailsWrapper({ params }: { params: Promise<{ id: string }> }) {
+  'use cache';
+
+  const { id } = await params;
+
+  cacheTag(`product-${id}`);
+
   const product = await getProductById(id);
 
   if (!product) {
@@ -62,6 +67,10 @@ async function ProductDetailsWrapper({ id }: { id: string }) {
 }
 
 async function RelatedProducts({ productId }: { productId: string }) {
+  'use cache';
+
+  cacheTag(`related-${productId}`);
+
   const relatedProducts = await getRelatedProducts(productId);
 
   return <ProductGrid products={relatedProducts} />;

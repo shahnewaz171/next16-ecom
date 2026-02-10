@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { cacheTag } from 'next/cache';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Button from '@/components/ui/Button';
@@ -72,12 +73,20 @@ export default function HomePage() {
 }
 
 async function FeaturedProducts() {
+  'use cache';
+
+  cacheTag('featured-products');
+
   const products = await getFeaturedProducts();
 
   return <ProductGrid products={products} />;
 }
 
 async function Categories() {
+  'use cache';
+
+  cacheTag('categories');
+
   const categories = await getCategories(['All']);
 
   return categories.map((category) => (

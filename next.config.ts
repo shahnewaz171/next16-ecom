@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  cacheComponents: false, // Disable for initial build
+  cacheComponents: true,
   transpilePackages: [],
   typedRoutes: true,
   turbopack: {

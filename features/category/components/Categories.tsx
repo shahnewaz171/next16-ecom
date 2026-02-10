@@ -1,9 +1,14 @@
+import { cacheTag } from 'next/cache';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import LinkStatus from '@/components/ui/LinkStatus';
 import { getCategories } from '@/features/category/category-services';
 
 const Categories = async () => {
+  'use cache';
+
+  cacheTag('categories');
+
   const categories = await getCategories(['All']);
 
   return categories.map((category) => (
