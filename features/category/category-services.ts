@@ -3,7 +3,7 @@ import type { SortOption } from '@/types/product';
 import { simulateDelay } from '@/utils';
 
 export const getCategories = async (hideCategories: string[] = []) => {
-  await simulateDelay();
+  await simulateDelay(750);
 
   const categories = [
     'All',
@@ -20,7 +20,7 @@ export const getCategories = async (hideCategories: string[] = []) => {
 };
 
 export const getSortOptions = async () => {
-  await simulateDelay();
+  await simulateDelay(450);
 
   const sortOptions: {
     value: SortOption;
