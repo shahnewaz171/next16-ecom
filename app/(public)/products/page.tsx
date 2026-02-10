@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { ProductGridSkeleton } from '@/components/ui/skeleton';
+import { ProductGridSkeleton, Skeleton } from '@/components/ui/skeleton';
 import { Pagination } from '@/features/products/components/Pagination';
 import { ProductFilters } from '@/features/products/components/ProductFilters';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
@@ -15,24 +15,17 @@ export default async function ProductsPage(props: { searchParams: SearchParams }
   const formattedSearchParams = { ...searchParams, page };
 
   return (
-    <div className="py-8">
-      <div className="mb-6 sm:mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2">All Products</h1>
-        <p className="text-sm sm:text-base text-muted-foreground">
-          Discover our complete collection of premium products
-        </p>
-      </div>
-
+    <>
       {/* Filters */}
       <div className="mb-8">
         <ProductFilters searchParams={formattedSearchParams} />
       </div>
 
       {/* Products Grid */}
-      <Suspense fallback={<ProductGridSkeleton count={12} />}>
+      <Suspense fallback={<ProductListSkeleton />}>
         <ProductList searchParams={formattedSearchParams} />
       </Suspense>
-    </div>
+    </>
   );
 }
 
@@ -51,6 +44,18 @@ async function ProductList({ searchParams }: { searchParams: ProductFiltersType 
 
       {/* Pagination */}
       <Pagination currentPage={currentPage} totalPages={totalPages} searchParams={searchParams} />
+    </>
+  );
+}
+
+function ProductListSkeleton() {
+  return (
+    <>
+      <div className="mb-4 text-sm text-muted-foreground">
+        <Skeleton className="h-4 w-1/3" />
+      </div>
+
+      <ProductGridSkeleton count={8} />
     </>
   );
 }
