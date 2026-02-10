@@ -1,8 +1,9 @@
 import { Heart, Package, Star, TruckIcon } from 'lucide-react';
 import { cookies } from 'next/headers';
+import { cache } from 'react';
 import { simulateDelay } from '@/utils';
 
-export const getUserProfile = async () => {
+export const getUserProfile = cache(async () => {
   await simulateDelay(600);
 
   const userId = (await cookies()).get('user_id')?.value;
@@ -23,7 +24,7 @@ export const getUserProfile = async () => {
     birthDate: '1990-01-01',
     gender: 'male'
   };
-};
+});
 
 export const getRecentOrders = async () => {
   await simulateDelay(700);

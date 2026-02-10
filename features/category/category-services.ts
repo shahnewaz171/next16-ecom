@@ -1,8 +1,9 @@
 import { ArrowDownAZ, ArrowUpAZ, DollarSign } from 'lucide-react';
+import { cache } from 'react';
 import type { SortOption } from '@/types/product';
 import { simulateDelay } from '@/utils';
 
-export const getCategories = async (hideCategories: string[] = []) => {
+export const getCategories = cache(async (hideCategories: string[] = []) => {
   await simulateDelay(750);
 
   const categories = [
@@ -17,9 +18,9 @@ export const getCategories = async (hideCategories: string[] = []) => {
   ];
 
   return categories.filter((c) => !hideCategories.includes(c));
-};
+});
 
-export const getSortOptions = async () => {
+export const getSortOptions = cache(async () => {
   await simulateDelay(450);
 
   const sortOptions: {
@@ -34,4 +35,4 @@ export const getSortOptions = async () => {
   ];
 
   return sortOptions;
-};
+});
