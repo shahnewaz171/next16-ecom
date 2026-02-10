@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import Button from '@/components/ui/Button';
 import { ProductGridSkeleton, ShopByCategorySkeleton } from '@/components/ui/skeleton';
-import { SpecialOfferBanner } from '@/features/authentication/components/SpecialOfferBanner';
+import {
+  GeneralBannerSkeleton,
+  SpecialOfferBanner
+} from '@/features/authentication/components/SpecialOfferBanner';
 import { getCategories } from '@/features/category/category-services';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { getFeaturedProducts } from '@/features/products/product-services';
@@ -35,9 +38,9 @@ export default function HomePage() {
       </section>
 
       {/* Special Offer Banner */}
-      <section>
+      <Suspense fallback={<GeneralBannerSkeleton />}>
         <SpecialOfferBanner />
-      </section>
+      </Suspense>
 
       {/* Featured Products */}
       <section>

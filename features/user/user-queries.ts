@@ -14,6 +14,8 @@ export const getUserProfile = async () => {
   return {
     id: userId,
     name: 'John Doe',
+    first_name: 'John',
+    last_name: 'Doe',
     email: 'john.doe@example.com',
     phone: '+1 234 567 890',
     address: '123 Main St, Anytown, USA',
