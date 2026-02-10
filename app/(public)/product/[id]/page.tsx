@@ -23,7 +23,7 @@ export function generateMetadata() {
   return products.map((item) => ({ id: item.id }));
 }
 
-export default function ProductPage({ params }: PageProps<'/product/[id]'>) {
+export default async function ProductPage({ params }: PageProps<'/product/[id]'>) {
   return (
     <div className="py-6 sm:py-8">
       <Suspense fallback={<ProductDetailsSkeleton />}>

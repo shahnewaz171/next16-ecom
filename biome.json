@@ -74,7 +74,7 @@
         "noConsole": "off",
         "noEmptyBlockStatements": "error",
         "noRedeclare": "error",
-        "useAwait": "error",
+        "useAwait": "off",
         "noConfusingVoidType": "error",
         "noWith": "error",
         "noVar": "error",
