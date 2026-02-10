@@ -144,7 +144,7 @@ export const products: Product[] = [
     name: 'Electric Kettle',
     description: 'Fast boiling electric kettle with temperature control',
     price: 59.99,
-    image: 'https://images.unsplash.com/photo-1562158147-f6ba6f5d2950?w=500&h=500&fit=crop',
+    image: 'https://images.unsplash.com/photo-1738520420652-0c47cea3922b?w=500&h=500&fit=crop',
     category: 'Kitchen',
     inStock: true,
     rating: 4.4,

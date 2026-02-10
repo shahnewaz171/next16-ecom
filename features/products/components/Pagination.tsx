@@ -44,6 +44,7 @@ export function Pagination({ currentPage, totalPages, searchParams }: Pagination
   return (
     <div className="flex items-center justify-center gap-2 mt-8">
       <Link
+        scroll={false}
         href={getSearchQuery('page', currentPage - 1, searchParams)}
         className={cn(isFirstPage && 'pointer-events-none')}
       >
@@ -67,6 +68,7 @@ export function Pagination({ currentPage, totalPages, searchParams }: Pagination
 
         return (
           <Link
+            scroll={false}
             key={page}
             href={getSearchQuery('page', page, searchParams)}
             className={cn(isActive && 'pointer-events-none')}
@@ -79,6 +81,7 @@ export function Pagination({ currentPage, totalPages, searchParams }: Pagination
       })}
 
       <Link
+        scroll={false}
         href={getSearchQuery('page', currentPage + 1, searchParams)}
         className={cn(isLastPage && 'pointer-events-none')}
       >

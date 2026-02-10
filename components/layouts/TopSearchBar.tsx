@@ -23,7 +23,7 @@ const TopSearchBar = () => {
   const debounceSearch = debounce((value: string) => {
     startTransition(() => {
       const url = serialize('/products', { search: value.trimEnd() });
-      router.push(url as Route);
+      router.push(url as Route, { scroll: false });
     });
   }, 300);
 

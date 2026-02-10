@@ -42,6 +42,7 @@ async function Categories({ searchParams }: { searchParams: ProductFiltersType }
   return categories.map((value) => (
     <Link
       key={value}
+      scroll={false}
       href={getSearchQuery('category', value, searchParams)}
       className={cn(
         'relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -66,6 +67,7 @@ async function SortOptions({ searchParams }: { searchParams: ProductFiltersType 
     return (
       <Link
         key={option.value}
+        scroll={false}
         href={getSearchQuery('sort', option.value, searchParams)}
         className={cn(isActive && 'pointer-events-none')}
       >

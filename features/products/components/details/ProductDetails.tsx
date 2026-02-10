@@ -2,9 +2,10 @@ import { Package, Shield, Star } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ProductGridSkeleton } from '@/components/ui/skeleton';
+import { ProductGridSkeleton, Skeleton } from '@/components/ui/skeleton';
 import AddToCartButtons from '@/features/products/components/details/AddToCartButtons';
 import type { Product } from '@/types/product';
+import { getUidWithPrefix } from '@/utils';
 
 const ProductDetails = ({ product }: { product: Product }) => {
   const { name, description, price, category, image, rating, reviews, inStock } = product;
@@ -86,19 +87,26 @@ export default ProductDetails;
 export function ProductDetailsSkeleton() {
   return (
     <>
+      {/* Breadcrumb Navigation */}
+      <div className="flex items-center gap-2 mb-6">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Skeleton key={getUidWithPrefix('breadcrumb-skeleton', i)} className="h-4 w-20 rounded" />
+        ))}
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 mb-10 sm:mb-16 mt-6">
         {/* Image Skeleton */}
         <div className="relative aspect-square max-h-75 sm:max-h-125 w-full rounded-lg overflow-hidden bg-muted animate-pulse" />
 
         {/* Info Skeleton */}
         <div className="flex flex-col gap-6">
-          <div className="h-8 w-32 bg-muted rounded" />
-          <div className="h-12 w-full bg-muted rounded" />
-          <div className="h-6 w-20 bg-muted rounded" />
-          <div className="h-4 w-full bg-muted rounded" />
-          <div className="h-4 w-3/4 bg-muted rounded" />
-          <div className="h-10 w-24 bg-muted rounded" />
-          <div className="h-8 w-32 bg-muted rounded" />
+          <Skeleton className="h-8 w-32" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-6 w-20" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-10 w-24" />
+          <Skeleton className="h-8 w-32" />
         </div>
       </div>
 

@@ -3,14 +3,13 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { ProductGridSkeleton } from '@/components/ui/skeleton';
-import ProductDetails from '@/features/products/components/details/ProductDetails';
+import ProductDetails, {
+  ProductDetailsSkeleton
+} from '@/features/products/components/details/ProductDetails';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
+import { products } from '@/features/products/data/products';
 import { getProductById, getRelatedProducts } from '@/features/products/product-services';
 import type { Product } from '@/types/product';
-
-interface ProductPageProps {
-  params: Promise<{ id: string }>;
-}
 
 const getProductBreadcrumbs = (product: Product) => [
   { name: 'Home', href: '/', icon: Home },
@@ -19,8 +18,23 @@ const getProductBreadcrumbs = (product: Product) => [
   { name: product.name, href: `/product/${product.id}` }
 ];
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export function generateMetadata() {
+  return products.map((item) => ({ id: item.id }));
+}
+
+export default async function ProductPage({ params }: PageProps<'/product/[id]'>) {
   const { id } = await params;
+
+  return (
+    <div className="py-6 sm:py-8">
+      <Suspense fallback={<ProductDetailsSkeleton />}>
+        <ProductDetailsWrapper id={id} />
+      </Suspense>
+    </div>
+  );
+}
+
+async function ProductDetailsWrapper({ id }: { id: string }) {
   const product = await getProductById(id);
 
   if (!product) {
@@ -30,7 +44,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const breadcrumbs = getProductBreadcrumbs(product);
 
   return (
-    <div className="py-6 sm:py-8">
+    <>
       {/* Breadcrumb Navigation */}
       <Breadcrumb items={breadcrumbs} />
 
@@ -40,10 +54,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div>
         <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Related Products</h2>
         <Suspense fallback={<ProductGridSkeleton count={4} />}>
-          <RelatedProducts productId={product.id} />
+          <RelatedProducts productId={id} />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }
 

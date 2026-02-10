@@ -39,7 +39,7 @@ export default async function RootLayout({
   const theme = (cookieStore.get(THEME_COOKIE_NAME)?.value as Theme) ?? undefined;
 
   return (
-    <html lang="en" className={theme}>
+    <html lang="en" data-scroll-behavior="smooth" className={theme}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
           <NuqsAdapter>
