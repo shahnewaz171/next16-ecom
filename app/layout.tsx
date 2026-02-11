@@ -3,11 +3,11 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import type React from 'react';
 import { BoundaryProvider } from '@/components/core/BoundaryProvider';
 import NotificationProvider from '@/components/core/NotificationProvider';
 import { ThemeProvider } from '@/components/core/ThemeProvider';
 import ThemeScript from '@/components/core/ThemeScript';
+import WebVitals from '@/components/core/WebVitals';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import BoundaryToggle from '@/features/boundary/BoundaryToggle';
@@ -29,11 +29,7 @@ export const metadata: Metadata = {
     'Discover amazing products with our Next.js 16 powered e-commerce platform featuring partial pre-rendering and advanced caching'
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
@@ -61,6 +57,8 @@ export default function RootLayout({
             </NotificationProvider>
           </NuqsAdapter>
         </ThemeProvider>
+
+        <WebVitals />
       </body>
     </html>
   );
