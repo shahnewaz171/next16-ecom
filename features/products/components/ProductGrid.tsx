@@ -1,5 +1,5 @@
+import { ProductCard } from '@/features/products/components/ProductCard';
 import type { Product } from '@/types/product';
-import { ProductCard } from './ProductCard';
 
 interface ProductGridProps {
   products: Product[];

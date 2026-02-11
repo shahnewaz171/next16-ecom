@@ -3,6 +3,7 @@
 import { ShoppingCart } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import type React from 'react';
+import HydrationBridge from '@/components/core/HydrationBridge';
 import Button from '@/components/ui/Button';
 import { verifyAuth } from '@/features/authentication/auth-actions';
 import { useCart } from '@/store/context/CartContext';
@@ -21,14 +22,16 @@ const AddToCartButton = ({ product }: { product: Product }) => {
   };
 
   return (
-    <Button
-      size="icon"
-      variant={isInCart(product.id) ? 'success' : 'default'}
-      disabled={!product.inStock}
-      onClick={handleAddToCart}
-    >
-      <ShoppingCart className="h-4 w-4" />
-    </Button>
+    <HydrationBridge>
+      <Button
+        size="icon"
+        variant={isInCart(product.id) ? 'success' : 'default'}
+        disabled={!product.inStock}
+        onClick={handleAddToCart}
+      >
+        <ShoppingCart className="h-4 w-4" />
+      </Button>
+    </HydrationBridge>
   );
 };
 

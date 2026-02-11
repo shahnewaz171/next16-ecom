@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import TopSearchBar, { TopSearchSkeleton } from '@/components/layouts/TopSearchBar';
 import Button from '@/components/ui/Button';
-import { CartDrawer } from '@/components/ui/CartDrawer';
 import { ThemeToggle, ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
 import { checkUserLoggedIn } from '@/features/authentication/auth-queries';
+import { CartDrawer } from '@/features/products/components/cart/CartDrawer';
 import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
 
 export default function Navbar() {
