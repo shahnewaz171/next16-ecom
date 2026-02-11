@@ -18,7 +18,7 @@ const getProductBreadcrumbs = (product: Product) => [
   { name: product.name, href: `/product/${product.id}` }
 ];
 
-export function generateMetadata() {
+export function generateStaticParams() {
   return products.map((item) => ({ id: item.id }));
 }
 
