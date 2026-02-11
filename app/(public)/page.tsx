@@ -12,7 +12,7 @@ import { getCategories } from '@/features/category/category-services';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { getFeaturedProducts } from '@/features/products/product-services';
 
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <div className="py-8 space-y-16">
       {/* Hero Section */}

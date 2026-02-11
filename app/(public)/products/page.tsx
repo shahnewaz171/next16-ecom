@@ -15,7 +15,7 @@ import { cn } from '@/utils/cn';
 
 type SearchParams = Promise<ProductFiltersType>;
 
-export default async function ProductsPage({ searchParams }: { searchParams: SearchParams }) {
+export default function ProductsPage({ searchParams }: { searchParams: SearchParams }) {
   return (
     <Suspense
       fallback={
