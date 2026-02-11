@@ -51,8 +51,6 @@ async function ProductsWrapper({ searchParams }: { searchParams: SearchParams })
 }
 
 async function ProductList({ searchParams }: { searchParams: ProductFiltersType }) {
-  'use cache';
-
   const { category, sort, search, page } = searchParams;
   const productsData = await getProducts({ category, search, sort, page });
   const { products = [], totalProducts, currentPage, totalPages } = productsData;

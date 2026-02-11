@@ -1,4 +1,3 @@
-import { cacheTag } from 'next/cache';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Button from '@/components/ui/Button';
@@ -38,10 +37,6 @@ export function ProductFilters({ searchParams }: { searchParams: ProductFiltersT
 }
 
 async function Categories({ searchParams }: { searchParams: ProductFiltersType }) {
-  'use cache';
-
-  cacheTag('categories');
-
   const categories = await getCategories();
 
   return categories.map((value) => (
@@ -62,10 +57,6 @@ async function Categories({ searchParams }: { searchParams: ProductFiltersType }
 }
 
 async function SortOptions({ searchParams }: { searchParams: ProductFiltersType }) {
-  'use cache';
-
-  cacheTag('sort-options');
-
   const { sort } = searchParams;
   const options = await getSortOptions();
 

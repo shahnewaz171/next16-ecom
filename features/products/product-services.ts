@@ -1,3 +1,4 @@
+import { cacheTag } from 'next/dist/server/use-cache/cache-tag';
 import { cache } from 'react';
 import { products } from '@/features/products/data/products';
 import type { PaginatedProducts, Product, ProductFilters, SortOption } from '@/types/product';
@@ -18,6 +19,9 @@ export const getFeaturedProducts = cache(async (limit = 8): Promise<Product[]> =
  * Get a single product by ID
  */
 export const getProductById = cache(async (id: string): Promise<Product | null> => {
+  'use cache: remote';
+  cacheTag(`products-${id}`);
+
   await simulateDelay();
 
   return products.find((p) => p.id === id) || null;
@@ -28,6 +32,9 @@ export const getProductById = cache(async (id: string): Promise<Product | null> 
  */
 export const getRelatedProducts = cache(
   async (productId: string, limit = 4): Promise<Product[]> => {
+    'use cache: remote';
+    cacheTag(`related-products-${productId}`);
+
     const product = await getProductById(productId);
     if (!product) return [];
 
@@ -90,6 +97,8 @@ function filterProducts(allProducts: Product[], filters: ProductFilters): Produc
  */
 export const getProducts = cache(
   async (filters: ProductFilters = {}): Promise<PaginatedProducts> => {
+    'use cache: remote';
+
     await simulateDelay();
 
     const filtered = filterProducts(products, filters);

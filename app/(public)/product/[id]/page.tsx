@@ -1,5 +1,4 @@
 import { Home } from 'lucide-react';
-import { cacheTag } from 'next/cache';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -40,10 +39,6 @@ async function ProductDetailsWrapper({ params }: { params: Promise<{ id: string 
 }
 
 async function ProductDetailsDetails({ id }: { id: string }) {
-  'use cache';
-
-  cacheTag(`product-${id}`);
-
   const product = await getProductById(id);
 
   if (!product) {
@@ -71,10 +66,6 @@ async function ProductDetailsDetails({ id }: { id: string }) {
 }
 
 async function RelatedProducts({ productId }: { productId: string }) {
-  'use cache';
-
-  cacheTag(`related-${productId}`);
-
   const relatedProducts = await getRelatedProducts(productId);
 
   return <ProductGrid products={relatedProducts} />;

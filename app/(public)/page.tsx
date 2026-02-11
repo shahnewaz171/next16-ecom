@@ -83,10 +83,6 @@ async function FeaturedProducts() {
 }
 
 async function Categories() {
-  'use cache';
-
-  cacheTag('categories');
-
   const categories = await getCategories(['All']);
 
   return categories.map((category) => (

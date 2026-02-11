@@ -1,9 +1,13 @@
 import { ArrowDownAZ, ArrowUpAZ, DollarSign } from 'lucide-react';
+import { cacheTag } from 'next/cache';
 import { cache } from 'react';
 import type { SortOption } from '@/types/product';
 import { simulateDelay } from '@/utils';
 
 export const getCategories = cache(async (hideCategories: string[] = []) => {
+  'use cache: remote';
+  cacheTag('categories');
+
   await simulateDelay(750);
 
   const categories = [
@@ -20,9 +24,7 @@ export const getCategories = cache(async (hideCategories: string[] = []) => {
   return categories.filter((c) => !hideCategories.includes(c));
 });
 
-export const getSortOptions = cache(async () => {
-  await simulateDelay(450);
-
+export const getSortOptions = async () => {
   const sortOptions: {
     value: SortOption;
     label: string;
@@ -35,4 +37,4 @@ export const getSortOptions = cache(async () => {
   ];
 
   return sortOptions;
-});
+};
