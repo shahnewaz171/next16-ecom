@@ -2,9 +2,9 @@ import { Lock, Mail } from 'lucide-react';
 import type { Route } from 'next';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form/input';
+import SubmitButton from '@/components/ui/form/SubmitButton';
 import { submitLoginForm } from '@/features/authentication/auth-actions';
-import SubmitButton from '@/features/authentication/components/SubmitButton';
 
 export default function LoginForm({ redirectUrl }: { redirectUrl?: string | string[] }) {
   return (
@@ -29,6 +29,7 @@ export default function LoginForm({ redirectUrl }: { redirectUrl?: string | stri
                 disabled
                 value="john.doe@example.com"
                 icon={<Mail className="h-4 w-4" />}
+                variant="icon"
                 className="disabled:cursor-auto disabled:opacity-100"
               />
             </div>
@@ -53,6 +54,7 @@ export default function LoginForm({ redirectUrl }: { redirectUrl?: string | stri
                 disabled
                 value="password123"
                 icon={<Lock className="h-4 w-4" />}
+                variant="icon"
                 autoComplete="new-password"
                 className="disabled:cursor-auto disabled:opacity-100"
               />

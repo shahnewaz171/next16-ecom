@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { createSerializer, parseAsString } from 'nuqs';
 import type React from 'react';
 import { useTransition } from 'react';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { debounce } from '@/utils';
 
@@ -45,6 +45,7 @@ const TopSearchBar = () => {
           defaultValue={search}
           isLoading={isPending}
           onChange={handleChange}
+          variant="icon"
           icon={<Search className="h-4 w-4" />}
           className="w-full"
         />

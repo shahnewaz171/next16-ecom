@@ -38,6 +38,7 @@ export function CartDrawer() {
           </div>
         )}
       </button>
+
       {/* Drawer content */}
       <Drawer isOpen={isOpen} onClose={onClose}>
         <div className="h-full bg-background border-l shadow-xl flex flex-col">
