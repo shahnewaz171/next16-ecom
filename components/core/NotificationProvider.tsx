@@ -5,7 +5,7 @@ const NotificationProvider = ({ children }: { children: ReactNode }) => (
   <>
     {children}
 
-    <Toaster position="top-right" richColors closeButton duration={10000} />
+    <Toaster position="bottom-left" richColors closeButton duration={10000} />
   </>
 );
 

@@ -246,4 +246,22 @@
       transform: translateY(0);
     }
   }
+
+  /* Marquee */
+  .marquee-content {
+    animation: marquee-scroll 100s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .marquee:hover .marquee-content {
+    animation-play-state: paused;
+  }
 }

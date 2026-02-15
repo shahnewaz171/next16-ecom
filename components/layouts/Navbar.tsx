@@ -33,6 +33,12 @@ export default function Navbar() {
             </Button>
           </Link>
 
+          <Link href="/about" className="hidden sm:block">
+            <Button variant="ghost" size="sm">
+              About
+            </Button>
+          </Link>
+
           {/* cart */}
           <Suspense fallback={<CartDrawerButtonSkeleton />}>
             <CartDrawerButtonWrapper />
