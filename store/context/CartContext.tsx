@@ -63,7 +63,7 @@ function cartReducer(state: CartType, action: CartAction): CartType {
     }
 
     case 'CLEAR':
-      return INITIAL_CART;
+      return { ...INITIAL_CART, isLoading: state.isLoading };
 
     case 'HYDRATE':
       return { ...withTotals(action.items), isLoading: false };
