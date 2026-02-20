@@ -14,7 +14,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <div>
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/product/${product.id}`} scroll={false}>
         <Card
           variant="elevated"
           hover="lift"

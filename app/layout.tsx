@@ -29,7 +29,13 @@ export const metadata: Metadata = {
     'Discover amazing products with our Next.js 16 powered e-commerce platform featuring partial pre-rendering and advanced caching'
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+  cart
+}: {
+  children: React.ReactNode;
+  cart: React.ReactNode;
+}) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
@@ -46,7 +52,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     {/* navbar */}
                     <Navbar />
 
-                    <main className="grow container mx-auto p-4">{children}</main>
+                    <main className="grow container mx-auto p-4">
+                      {children}
+                      {cart}
+                    </main>
 
                     <Footer>
                       <BoundaryToggle />

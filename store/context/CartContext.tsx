@@ -8,10 +8,15 @@ import type { Product } from '@/types/product';
 const CART_STORAGE_KEY = 'ecommerce-cart';
 const CartContext = createContext<CartContextType | null>(null);
 
-const INITIAL_CART: Cart = {
+interface CartType extends Cart {
+  isLoading?: boolean;
+}
+
+const INITIAL_CART: CartType = {
   items: [],
   totalItems: 0,
-  totalPrice: 0
+  totalPrice: 0,
+  isLoading: true
 };
 
 function calculateTotals(items: CartItem[]): Pick<Cart, 'totalItems' | 'totalPrice'> {
@@ -28,7 +33,7 @@ function withTotals(items: CartItem[]): Cart {
   return { items, ...calculateTotals(items) };
 }
 
-function cartReducer(state: Cart, action: CartAction): Cart {
+function cartReducer(state: CartType, action: CartAction): CartType {
   const { items } = state;
 
   switch (action.type) {
@@ -61,7 +66,7 @@ function cartReducer(state: Cart, action: CartAction): Cart {
       return INITIAL_CART;
 
     case 'HYDRATE':
-      return withTotals(action.items);
+      return { ...withTotals(action.items), isLoading: false };
 
     default:
       return state;
@@ -96,9 +101,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const items = loadCartFromStorage();
-    if (items && items.length > 0) {
-      dispatch({ type: 'HYDRATE', items });
-    }
+    dispatch({ type: 'HYDRATE', items: items || [] });
   }, []);
 
   const addToCart = (product: Product, quantity = 1) => {

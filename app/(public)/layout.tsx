@@ -1,7 +1,14 @@
 const PublicLayout = ({
-  children
+  children,
+  modal
 }: Readonly<{
   children: React.ReactNode;
-}>) => children;
+  modal: React.ReactNode;
+}>) => (
+  <>
+    {children}
+    {modal}
+  </>
+);
 
 export default PublicLayout;

@@ -3,8 +3,7 @@ import { Suspense } from 'react';
 import TopSearchBar, { TopSearchSkeleton } from '@/components/layouts/TopSearchBar';
 import Button from '@/components/ui/Button';
 import { ThemeToggle, ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
-import { checkUserLoggedIn } from '@/features/authentication/auth-queries';
-import { CartDrawer } from '@/features/products/components/cart/CartDrawer';
+import CartDrawerButton from '@/features/products/components/cart/CartDrawerButton';
 import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
 
 export default function Navbar() {
@@ -41,7 +40,7 @@ export default function Navbar() {
 
           {/* cart */}
           <Suspense fallback={<CartDrawerButtonSkeleton />}>
-            <CartDrawerButtonWrapper />
+            <CartDrawerButton />
           </Suspense>
 
           {/* user profile */}
@@ -54,19 +53,11 @@ export default function Navbar() {
   );
 }
 
-async function CartDrawerButtonWrapper() {
-  const isLoggedIn = await checkUserLoggedIn();
-
-  if (!isLoggedIn) return null;
-
-  return <CartDrawer />;
-}
-
 function CartDrawerButtonSkeleton() {
   return (
     <div className="relative">
       <div className="w-5 h-5 bg-muted rounded animate-pulse" />
-      <div className="absolute -top-2 -right-2 w-4 h-4 bg-destructive rounded-full animate-pulse" />
+      <div className="absolute -top-2 -right-2 w-3 h-3 bg-destructive rounded-full animate-pulse" />
     </div>
   );
 }

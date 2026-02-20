@@ -23,37 +23,33 @@ const Drawer = ({
   // Close on Escape key
   useEscapeKey(handler);
 
+  if (!isOpen) return null;
+
   return createPortal(
     <AnimatePresence>
-      {isOpen && (
-        <MotionDiv
-          className="fixed inset-0 z-9999"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          aria-modal="true"
-          role="dialog"
-        >
-          {/* Backdrop */}
-          <MotionDiv
-            className="absolute inset-0 bg-black/50"
-            onClick={onClose}
-            aria-hidden="true"
-          />
+      <MotionDiv
+        className="fixed inset-0 z-9999"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        aria-modal="true"
+        role="dialog"
+      >
+        {/* Backdrop */}
+        <MotionDiv className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
 
-          {/* Slide-in panel – anchored to right edge */}
-          <MotionDiv
-            className="absolute inset-y-0 right-0 w-full max-w-md"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-          >
-            {children}
-          </MotionDiv>
+        {/* Slide-in panel – anchored to right edge */}
+        <MotionDiv
+          className="absolute inset-y-0 right-0 w-full max-w-md"
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '100%' }}
+          transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+        >
+          {children}
         </MotionDiv>
-      )}
+      </MotionDiv>
     </AnimatePresence>,
     document.body
   );
