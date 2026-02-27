@@ -1,15 +1,37 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '@/components/core/ThemeProvider';
+import { useState } from 'react';
 import { cn } from '@/utils/cn';
 
-export function ThemeToggle({ className }: { className?: string }) {
-  const { theme = 'dark', toggleTheme } = useTheme();
-  const isDark = theme === 'dark';
+const THEME_KEY = 'theme';
+
+const getInitialTheme = () => {
+  if (typeof window === 'undefined') return 'dark';
+  return localStorage.getItem(THEME_KEY) || 'dark';
+};
+
+export default function ThemeToggle({ className }: { className?: string }) {
+  const [theme, setTheme] = useState(() => getInitialTheme());
+
+  const toggleTheme = () => {
+    const updatedTheme = theme === 'dark' ? 'light' : 'dark';
+    const themeColor = updatedTheme === 'dark' ? '#212737' : '#fdfdfd';
+
+    const root = document.documentElement;
+    root.setAttribute('data-theme', updatedTheme);
+    root.style.colorScheme = updatedTheme;
+    localStorage.setItem(THEME_KEY, updatedTheme);
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    themeColorMeta?.setAttribute('content', themeColor);
+
+    setTheme(updatedTheme);
+  };
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       className={cn(
         'relative inline-flex h-10 w-10 items-center justify-center rounded-full',
@@ -18,15 +40,9 @@ export function ThemeToggle({ className }: { className?: string }) {
         className
       )}
       aria-label="Toggle theme"
-      type="button"
     >
-      <div>
-        {isDark ? (
-          <Moon className="h-5 w-5 text-primary" />
-        ) : (
-          <Sun className="h-5 w-5 text-primary" />
-        )}
-      </div>
+      <Sun size={20} className="hidden dark:block text-primary" />
+      <Moon size={20} className="block dark:hidden text-primary" />
     </button>
   );
 }

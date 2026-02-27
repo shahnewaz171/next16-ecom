@@ -1,21 +1,23 @@
-/** biome-ignore-all lint/security/noDangerouslySetInnerHtml: This script is safe as it only reads a cookie and applies a class to the document element */
-
-import { DEFAULT_THEME, THEME_COOKIE_NAME } from '@/utils/theme';
+/** biome-ignore-all lint/security/noDangerouslySetInnerHtml: . */
 
 const script = `(function() {
   try {
-    const match = document.cookie.match(
-      /(?:^|;\\s*)${THEME_COOKIE_NAME}=([^;]*)/
-    );
-    const theme = match ? match[1] : '${DEFAULT_THEME}';
+    var theme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+    var color = theme === 'dark' ? '#212737' : '#fdfdfd';
 
-    document.documentElement.classList.add(theme);
+    document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.style.colorScheme = theme;
-  } catch (e) {
-    console.error('Failed to apply theme from cookie', e);
-  }
+
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', color);
+  } catch (e) {}
 })()`;
 
-const ThemeScript = () => <script dangerouslySetInnerHTML={{ __html: script }} />;
+const ThemeScript = () => (
+  <>
+    <meta name="theme-color" content="#fdfdfd" />
+    <script id="theme-initializer" dangerouslySetInnerHTML={{ __html: script }} />
+  </>
+);
 
 export default ThemeScript;

@@ -44,9 +44,8 @@ export default UserProfile;
 export function UserProfileSkeleton() {
   return (
     <div className="flex items-center space-x-2 animate-pulse">
-      <div className="size-9 bg-muted rounded-full" />
       <div className="space-y-1">
-        <div className="w-15.5 h-3 bg-muted rounded" />
+        <div className="w-17.75 h-3 bg-muted rounded" />
         <div className="w-10 h-3 bg-muted rounded" />
       </div>
     </div>

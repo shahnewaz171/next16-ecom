@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import TopSearchBar, { TopSearchSkeleton } from '@/components/layouts/TopSearchBar';
 import Button from '@/components/ui/Button';
-import { ThemeToggle, ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
+import ThemeToggle, { ThemeToggleSkeleton } from '@/components/ui/ThemeToggle';
 import CartDrawerButton from '@/features/products/components/cart/CartDrawerButton';
 import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
 

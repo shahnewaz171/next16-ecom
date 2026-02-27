@@ -5,7 +5,6 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { BoundaryProvider } from '@/components/core/BoundaryProvider';
 import NotificationProvider from '@/components/core/NotificationProvider';
-import { ThemeProvider } from '@/components/core/ThemeProvider';
 import ThemeScript from '@/components/core/ThemeScript';
 import WebVitals from '@/components/core/WebVitals';
 import Footer from '@/components/layouts/Footer';
@@ -43,29 +42,27 @@ export default function RootLayout({
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider>
-          <NuqsAdapter>
-            <NotificationProvider>
-              <BoundaryProvider>
-                <CartProvider>
-                  <div className="min-h-screen flex flex-col pb-20">
-                    {/* navbar */}
-                    <Navbar />
+        <NuqsAdapter>
+          <NotificationProvider>
+            <BoundaryProvider>
+              <CartProvider>
+                <div className="min-h-screen flex flex-col pb-20">
+                  {/* navbar */}
+                  <Navbar />
 
-                    <main className="grow container mx-auto p-4">
-                      {children}
-                      {cart}
-                    </main>
+                  <main className="grow container mx-auto p-4">
+                    {children}
+                    {cart}
+                  </main>
 
-                    <Footer>
-                      <BoundaryToggle />
-                    </Footer>
-                  </div>
-                </CartProvider>
-              </BoundaryProvider>
-            </NotificationProvider>
-          </NuqsAdapter>
-        </ThemeProvider>
+                  <Footer>
+                    <BoundaryToggle />
+                  </Footer>
+                </div>
+              </CartProvider>
+            </BoundaryProvider>
+          </NotificationProvider>
+        </NuqsAdapter>
 
         <WebVitals />
       </body>
