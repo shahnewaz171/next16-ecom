@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 const baseURL = process.env.BASE_URL || `http://localhost:${PORT}`;
 const isCI = !!process.env.CI;
 const slowMo = process.env.SLOW_MO ? Number.parseInt(process.env.SLOW_MO, 10) : 0;
-const startLocalServer = PORT === 3000;
+const startLocalServer = baseURL === `http://localhost:${PORT}`;
 
 // ─── Auth state file ───────────────────────────────────────────────
 const authFile = path.resolve(__dirname, 'e2e/.auth/user.json');

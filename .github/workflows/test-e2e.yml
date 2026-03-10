@@ -37,6 +37,9 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
+        env:
+          CI: true
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: pnpm exec playwright test --project=auth-setup --project=chromium --project=auth-chromium
 
       - name: Upload HTML report
