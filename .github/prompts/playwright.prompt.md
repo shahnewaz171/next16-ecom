@@ -17,6 +17,7 @@ You will receive a prompt that describe the test scenario.
 - **Assertions Based on Application State:** Write assertions based on the current state of the application. Do not make assumptions about the application.
 - **CSS locators:** Avoid using CSS selectors for element selection unless there are no other options available. Remember that CSS locators are not recommended if DOM elements frequently change.
 - **Fixtures and Page Object Model:** Utilize Playwright's fixtures and Page Object Model to reuse repeated logic and improve maintainability and readability.
+- **Tag Tests:** If the test scenario involves specific features or components, consider tagging the tests accordingly for better organization and filtering.
 - **Authentication:** If a test scenario requires authentication, follow Playwright's best practices for handling authentication. Reuse authentication logic by loading an existing authenticated state. This improves reproducibility, prevents cascading failures, and speeds up test execution by eliminating the need to log in for every test.
 - **Mock APIs:** If a test scenario involves API interactions, use Playwright’s API mocking capabilities to simulate responses. This allows you to test different scenarios and handle edge cases effectively.
 - **Test Structure:** Follow best practices for structuring Playwright tests, including setup and teardown processes, and organizing tests into describe and it blocks.
