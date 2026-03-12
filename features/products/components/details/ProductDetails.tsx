@@ -11,7 +11,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const { name, description, price, category, image, rating, reviews, inStock } = product;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 mb-10 sm:mb-16">
+    <div
+      data-testid="product-details"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 mb-10 sm:mb-16"
+    >
       {/* Product Image */}
       <div className="relative aspect-square max-h-75 sm:max-h-125 w-full rounded-lg overflow-hidden bg-muted">
         <Image

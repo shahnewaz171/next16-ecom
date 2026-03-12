@@ -3,10 +3,10 @@
 import { ShoppingCart } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import type React from 'react';
+import { useCart } from '@/store/context/CartContext';
 import HydrationBridge from '@/components/core/HydrationBridge';
 import Button from '@/components/ui/Button';
 import { verifyAuth } from '@/features/authentication/auth-actions';
-import { useCart } from '@/store/context/CartContext';
 import type { Product } from '@/types/product';
 
 const AddToCartButton = ({ product }: { product: Product }) => {

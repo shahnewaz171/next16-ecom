@@ -2,9 +2,9 @@
 
 import { ShoppingCart } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { useCart } from '@/store/context/CartContext';
 import Button from '@/components/ui/Button';
 import { verifyAuth } from '@/features/authentication/auth-actions';
-import { useCart } from '@/store/context/CartContext';
 import type { Product } from '@/types/product';
 
 const AddToCartButtons = ({ product }: { product: Product }) => {
@@ -12,8 +12,11 @@ const AddToCartButtons = ({ product }: { product: Product }) => {
   const pathname = usePathname();
 
   const handleAddToCart = async () => {
-    await verifyAuth(pathname);
-    addToCart?.(product);
+    const isAuthenticated = await verifyAuth(pathname);
+
+    if (isAuthenticated) {
+      addToCart?.(product);
+    }
   };
 
   return (

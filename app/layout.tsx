@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { CartProvider } from '@/store/context/CartContext';
 import { BoundaryProvider } from '@/components/core/BoundaryProvider';
 import NotificationProvider from '@/components/core/NotificationProvider';
 import ThemeScript from '@/components/core/ThemeScript';
@@ -10,7 +11,6 @@ import WebVitals from '@/components/core/WebVitals';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import BoundaryToggle from '@/features/boundary/BoundaryToggle';
-import { CartProvider } from '@/store/context/CartContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

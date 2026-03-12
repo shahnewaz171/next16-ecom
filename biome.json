@@ -149,6 +149,8 @@
               ":BUN:",
               ":PACKAGE_WITH_PROTOCOL:",
               ":PACKAGE:",
+              ["@/store/**", "!@/features/**"],
+              "@/**",
               ":ALIAS:",
               "src/**",
               "../*",
