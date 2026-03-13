@@ -13,7 +13,7 @@ export default defineConfig({
     globals: false,
     fileParallelism: true,
 
-    setupFiles: ['./tests/vitest.setup.ts'],
+    setupFiles: ['./tests/vitest.setup.ts', './tests/msw.setup.ts'],
     // globalSetup: ['./tests/vitest.global.setup.ts'],
 
     // Defines which files will be considered tests (unit and integration)

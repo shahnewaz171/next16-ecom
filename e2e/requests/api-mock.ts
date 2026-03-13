@@ -13,11 +13,8 @@ import type { Page, Route } from '@playwright/test';
  */
 
 type MockOptions = {
-  /** HTTP status code (default 200) */
   status?: number;
-  /** Response headers */
   headers?: Record<string, string>;
-  /** Optional delay in ms to simulate network latency */
   delay?: number;
 };
 
@@ -67,35 +64,6 @@ export async function mockApiError(
 }
 
 /**
- * Intercept a route and return a modified version of the real response.
- *
- * @example
- * ```ts
- * await interceptAndModify(page, '/api/products', (json) => ({
- *   ...json,
- *   products: json.products.slice(0, 2),
- * }));
- * ```
- */
-export async function interceptAndModify(
-  page: Page,
-  urlPattern: string | RegExp,
-  modifier: (json: Record<string, unknown>) => unknown
-) {
-  await page.route(urlPattern, async (route: Route) => {
-    const response = await route.fetch();
-    const json = await response.json();
-    const modified = modifier(json);
-
-    await route.fulfill({
-      status: response.status(),
-      contentType: 'application/json',
-      body: JSON.stringify(modified)
-    });
-  });
-}
-
-/**
  * Abort requests matching a pattern (useful for blocking analytics, etc.).
  *
  * @example
@@ -105,25 +73,4 @@ export async function interceptAndModify(
  */
 export async function abortRequests(page: Page, urlPattern: string | RegExp) {
   await page.route(urlPattern, (route: Route) => route.abort());
-}
-
-/**
- * Wait for and capture a specific API request/response pair.
- *
- * @example
- * ```ts
- * const response = await captureApiResponse(page, '/api/cart', async () => {
- *   await page.getByRole('button', { name: 'Add to Cart' }).click();
- * });
- * expect(response.status()).toBe(200);
- * ```
- */
-export async function captureApiResponse(
-  page: Page,
-  urlPattern: string | RegExp,
-  triggerAction: () => Promise<void>
-) {
-  const [response] = await Promise.all([page.waitForResponse(urlPattern), triggerAction()]);
-
-  return response;
 }

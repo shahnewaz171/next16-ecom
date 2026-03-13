@@ -3,8 +3,7 @@ import { cache } from 'react';
 import { products } from '@/features/products/data/products';
 import type { PaginatedProducts, Product, ProductFilters, SortOption } from '@/types/product';
 import { simulateDelay } from '@/utils';
-
-const PRODUCTS_PER_PAGE = 12;
+import { BASE_URL } from '@/utils/env';
 
 export const getFeaturedProducts = cache(async (limit = 8): Promise<Product[]> => {
   await simulateDelay();
@@ -67,7 +66,7 @@ function sortProducts(productList: Product[], sortOption: SortOption): Product[]
 /**
  * Filter and sort products based on criteria
  */
-function filterProducts(allProducts: Product[], filters: ProductFilters): Product[] {
+export function filterProducts(allProducts: Product[], filters: ProductFilters): Product[] {
   let filtered = [...allProducts];
 
   // Filter by category
@@ -99,18 +98,35 @@ export const getProducts = cache(
   async (filters: ProductFilters = {}): Promise<PaginatedProducts> => {
     'use cache: remote';
 
-    await simulateDelay();
+    const { category = '', search = '', sort = '', page = 1 } = filters;
 
-    const filtered = filterProducts(products, filters);
-    const page = filters.page || 1;
-    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-    const endIndex = startIndex + PRODUCTS_PER_PAGE;
+    try {
+      const searchParams = new URLSearchParams({
+        category,
+        search,
+        sort,
+        page: String(page)
+      });
+      const response = await fetch(`${BASE_URL}/api/products?${searchParams.toString()}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await response.json();
 
-    return {
-      products: filtered.slice(startIndex, endIndex),
-      totalPages: Math.ceil(filtered.length / PRODUCTS_PER_PAGE),
-      currentPage: page,
-      totalProducts: filtered.length
-    };
+      return {
+        products: data.products || [],
+        totalPages: data.totalPages || 1,
+        currentPage: data.currentPage || 1,
+        totalProducts: data.totalProducts || 0
+      };
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      return {
+        products: [],
+        totalPages: 1,
+        currentPage: 1,
+        totalProducts: 0
+      };
+    }
   }
 );
