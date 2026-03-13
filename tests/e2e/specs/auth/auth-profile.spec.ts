@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '@/e2e/fixtures';
+import { test } from '@/tests/e2e/fixtures';
 
 /**
  * Authenticated tests — these use the storageState saved by auth.setup.ts

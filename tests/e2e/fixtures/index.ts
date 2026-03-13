@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { HomePage, LoginPage, NavbarComponent, ProductsPage, ProfilePage } from '@/e2e/pages';
+import { HomePage, LoginPage, NavbarComponent, ProductsPage, ProfilePage } from '@/tests/e2e/pages';
 
 // ─── Fixture types ─────────────────────────────────────────────────
 

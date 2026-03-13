@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
-import { test } from '@/e2e/fixtures';
-import { mockApiError, mockApiRoute } from '@/e2e/requests/api-mock';
+import { test } from '@/tests/e2e/fixtures';
+import { mockApiError, mockApiRoute } from '@/tests/e2e/requests/api-mock';
 
 /**
  * Demonstrates mock API usage in Playwright tests.

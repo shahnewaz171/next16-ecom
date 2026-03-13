@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { NavbarComponent } from '@/e2e/pages/navbar.page';
+import { NavbarComponent } from '@/tests/e2e/pages/navbar.page';
 
 export class HomePage {
   readonly navbar: NavbarComponent;

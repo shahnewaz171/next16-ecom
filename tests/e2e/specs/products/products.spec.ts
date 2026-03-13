@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '@/e2e/fixtures';
+import { test } from '@/tests/e2e/fixtures';
 
 test.describe('Products Page', () => {
   test.beforeEach(async ({ productsPage }) => {
