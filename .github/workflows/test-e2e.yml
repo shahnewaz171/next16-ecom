@@ -22,7 +22,7 @@ jobs:
         with:
           filters: |
             e2e:
-              - 'e2e/**'
+              - 'tests/e2e/**'
 
   test-e2e:
     name: E2E Tests (Playwright)

@@ -9,11 +9,11 @@ const slowMo = process.env.SLOW_MO ? Number.parseInt(process.env.SLOW_MO, 10) : 
 const startLocalServer = baseURL === `http://localhost:${PORT}`;
 
 // ─── Auth state file ───────────────────────────────────────────────
-const authFile = path.resolve(__dirname, 'e2e/.auth/user.json');
+const authFile = path.resolve(__dirname, './tests/e2e/.auth/user.json');
 
 export default defineConfig({
-  testDir: './e2e/specs',
-  outputDir: './e2e/.results',
+  testDir: './tests/e2e/specs',
+  outputDir: './tests/e2e/.results',
   fullyParallel: true,
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
@@ -36,7 +36,7 @@ export default defineConfig({
   projects: [
     {
       name: 'auth-setup',
-      testDir: './e2e/setup',
+      testDir: './tests/e2e/setup',
       testMatch: 'auth.setup.ts'
     },
     {
