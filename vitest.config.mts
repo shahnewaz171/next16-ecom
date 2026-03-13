@@ -17,7 +17,7 @@ export default defineConfig({
     // globalSetup: ['./tests/vitest.global.setup.ts'],
 
     // Defines which files will be considered tests (unit and integration)
-    include: ['components/**/*.{spec,test}.{ts,tsx}', 'features/**/*.{spec,test}.{ts,tsx}', 'tests/integration/**/*.{spec,test}.{ts,tsx}'],
+    include: ['components/**/*.{spec,test}.{ts,tsx}', 'features/**/*.{spec,test}.{ts,tsx}', 'tests/integration/**/*.{spec,test}.{ts,tsx}', 'hooks/**/*.{spec,test}.{ts,tsx}'],
     // exclude: ['**\/node_modules/**', '**\/.git/**', 'e2e/**'],
 
     coverage: {

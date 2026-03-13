@@ -67,8 +67,10 @@ describe('Product page', () => {
   it('add product to cart to check if the component is interactive', async () => {
     render(<ProductDetails product={mockProduct} />);
 
+    const user = userEvent.setup();
+
     const addToCartButton = screen.getByRole('button', { name: /add to cart/i });
-    await userEvent.click(addToCartButton);
+    await user.click(addToCartButton);
 
     expect(addToCartButton).toBeInTheDocument();
     expect(addToCartButton).toHaveClass('bg-[var(--success)]');
