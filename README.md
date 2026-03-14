@@ -1,19 +1,6 @@
 # Next.js 16 E-Commerce
 
-A demo e-commerce app I built to explore Next.js 16 features like Partial Pre-Rendering, the React Compiler, and Tailwind CSS v4. It's not a real store — just a playground to try out modern patterns.
-
-## What's in here
-
-- **Next.js 16.1** with Turbopack and typed routes
-- **React Compiler** enabled out of the box
-- Dark/light theme that persists across sessions
-- Product listing with category filters, search, sorting, and pagination
-- Product detail pages with breadcrumb nav and related products
-- User profile page (protected route)
-- Login & signup pages with form validation
-- Shopping cart with drawer UI
-- Framer Motion animations
-- Fully responsive — works on mobile
+A demo e-commerce app I built to explore Next.js 16 features like Partial Pre-Rendering, the React Compiler, parallel/intercepting routes, and a full test setup with Vitest + Playwright.
 
 ## Getting started
 
@@ -43,21 +30,6 @@ pnpm start
 | `pnpm format` | Format code |
 | `pnpm analyze` | Analyze bundle size |
 
-## Project structure
-
-```
-app/
-  (public)/         → Public pages (home, products, login, register)
-  (private)/        → Protected pages (profile)
-components/         → Shared UI components (Button, Card, Badge, etc.)
-features/           → Feature modules (products, auth, user)
-store/              → Cart context
-layouts/            → Navbar, Footer, TopSearchBar (now in components/layouts)
-utils/              → Helpers
-types/              → TypeScript types
-```
-
-Route protection is handled in `proxy.ts` (Next.js 16 middleware).
 
 ## Notes
 
