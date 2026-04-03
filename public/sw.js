@@ -1,5 +1,43 @@
-const CACHE_NAME = 'commerce-cache-v1';
+const CACHE_NAME = 'commerce-cache-v2';
 const PRECACHE_URLS = ['/offline.html'];
+const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_TIMESTAMP_KEY = '/sw-cache-timestamp';
+
+async function isCacheExpired() {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    const timestampResponse = await cache.match(CACHE_TIMESTAMP_KEY);
+
+    if (!timestampResponse) return true;
+
+    const { timestamp } = await timestampResponse.json();
+    if (typeof timestamp !== 'number' || !Number.isFinite(timestamp)) return true;
+
+    return Date.now() - timestamp > CACHE_EXPIRATION_MS;
+  } catch {
+    return true;
+  }
+}
+
+async function setCacheTimestamp() {
+  const cache = await caches.open(CACHE_NAME);
+  await cache.put(
+    CACHE_TIMESTAMP_KEY,
+    new Response(JSON.stringify({ timestamp: Date.now() }), {
+      headers: { 'Content-Type': 'application/json' }
+    })
+  );
+}
+
+async function refreshCache() {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.addAll(PRECACHE_URLS);
+    await setCacheTimestamp();
+  } catch (error) {
+    console.error('Failed to refresh cache:', error);
+  }
+}
 
 /*
   Install means the service worker is being registered for the first time when the user visits the site, or when the service worker file changes (e.g. due to a new deployment). 
@@ -10,6 +48,7 @@ self.addEventListener('install', (event) => {
     caches
       .open(CACHE_NAME)
       .then((cache) => cache.addAll(PRECACHE_URLS))
+      .then(() => setCacheTimestamp())
       .then(() => self.skipWaiting())
       .catch((error) => console.error('Failed to pre-cache resources:', error))
   );
@@ -24,11 +63,23 @@ self.addEventListener('fetch', (event) => {
   if (event.request.mode !== 'navigate') return;
 
   event.respondWith(
-    fetch(event.request).catch(() =>
-      caches
-        .match(PRECACHE_URLS[0])
-        .catch((error) => console.error('Failed to fetch resource:', error))
-    )
+    fetch(event.request)
+      .then((response) => {
+        // Refresh expired cache in the background after a successful network response
+        isCacheExpired().then((expired) => {
+          if (expired) {
+            refreshCache().catch(() =>
+              console.error('Failed to refresh cache after network response')
+            );
+          }
+        });
+        return response;
+      })
+      .catch(() =>
+        caches
+          .match(PRECACHE_URLS[0])
+          .catch((error) => console.error('Failed to fetch resource:', error))
+      )
   );
 });
 
@@ -54,3 +105,21 @@ self.addEventListener('activate', (event) => {
       .catch((error) => console.error('Failed to activate service worker:', error))
   );
 });
+
+/* 
+  When the client comes back online it posts { type: 'SW_UPDATE' }; update and
+  reload all controlled clients so they get the freshest worker immediately.
+*/
+
+// self.addEventListener('message', (event) => {
+//   if (event?.data?.type !== 'SW_UPDATE') return;
+
+//   self.registration
+//     .update()
+//     .then(() => {
+//       // After the new worker is installed and waiting, tell every client to reload.
+//       return self.clients.matchAll({ type: 'window' });
+//     })
+//     .then((clients) => clients.forEach((client) => client.navigate(client.url)))
+//     .catch((error) => console.error('Failed to update service worker:', error));
+// });
