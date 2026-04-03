@@ -4,11 +4,11 @@ import { ShoppingCart as CartIcon, Minus, Plus, Trash2, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useCart } from '@/store/context/CartContext';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/card';
 import Drawer from '@/components/ui/Drawer';
 import CartSkeleton from '@/features/products/components/cart/CartSkeleton';
-import { useCart } from '@/store/context/CartContext';
 import { cn } from '@/utils/cn';
 
 export function CartDrawer() {

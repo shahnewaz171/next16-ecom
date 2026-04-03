@@ -3,8 +3,8 @@
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/store/context/CartContext';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/utils/cn';
 
 const CartDrawerButton = () => {

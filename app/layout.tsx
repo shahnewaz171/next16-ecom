@@ -6,6 +6,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { CartProvider } from '@/store/context/CartContext';
 import { BoundaryProvider } from '@/components/core/BoundaryProvider';
 import NotificationProvider from '@/components/core/NotificationProvider';
+import PostHogProvider from '@/components/core/PostHogProvider';
 import ServiceWorkerRegistration from '@/components/core/ServiceWorkerRegistration';
 import ThemeScript from '@/components/core/ThemeScript';
 import WebVitals from '@/components/core/WebVitals';
@@ -43,27 +44,29 @@ export default function RootLayout({
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NuqsAdapter>
-          <NotificationProvider>
-            <BoundaryProvider>
-              <CartProvider>
-                <div className="min-h-screen flex flex-col pb-20">
-                  {/* navbar */}
-                  <Navbar />
+        <PostHogProvider>
+          <NuqsAdapter>
+            <NotificationProvider>
+              <BoundaryProvider>
+                <CartProvider>
+                  <div className="min-h-screen flex flex-col pb-20">
+                    {/* navbar */}
+                    <Navbar />
 
-                  <main className="grow container mx-auto p-4">
-                    {children}
-                    {cart}
-                  </main>
+                    <main className="grow container mx-auto p-4">
+                      {children}
+                      {cart}
+                    </main>
 
-                  <Footer>
-                    <BoundaryToggle />
-                  </Footer>
-                </div>
-              </CartProvider>
-            </BoundaryProvider>
-          </NotificationProvider>
-        </NuqsAdapter>
+                    <Footer>
+                      <BoundaryToggle />
+                    </Footer>
+                  </div>
+                </CartProvider>
+              </BoundaryProvider>
+            </NotificationProvider>
+          </NuqsAdapter>
+        </PostHogProvider>
 
         <ServiceWorkerRegistration />
         <WebVitals />

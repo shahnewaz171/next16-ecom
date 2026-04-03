@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@posthog/react": "^1.8.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
@@ -34,6 +35,7 @@
     "lucide-react": "^0.562.0",
     "next": "^16.1.1",
     "nuqs": "^2.8.8",
+    "posthog-js": "^1.364.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hook-form": "^7.69.0",
