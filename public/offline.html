@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>You're offline</title>
+    </head>
+    <body>
+        <style>
+            :root{
+                --bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa;--white:#e6eef8
+            }
+            @media (prefers-color-scheme:light){
+                :root{--bg:#f4f7fb;--card:#ffffff;--muted:#556070;--accent:#2563eb;--white:#0b1220}
+            }
+            html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+            body{background:linear-gradient(180deg,var(--bg),#071024);color:var(--white);display:flex;align-items:center;justify-content:center}
+            .card{width:clamp(280px,70vw,760px);background:var(--card);border-radius:14px;padding:28px;box-shadow:0 8px 30px rgba(2,6,23,.6);display:flex;gap:24px;align-items:center}
+            .icon{flex:0 0 88px;height:88px;border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent);display:grid;place-items:center}
+            svg{width:56px;height:56px;display:block}
+            h1{margin:0;font-size:20px;line-height:1.1}
+            p{margin:8px 0 0;color:var(--muted);font-size:14px}
+            .actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+            .btn{appearance:none;border:0;padding:10px 14px;border-radius:10px;background:transparent;color:var(--accent);cursor:pointer;font-weight:600}
+            .btn.primary{background:var(--accent);color:white;box-shadow:0 6px 18px rgba(37,99,235,.18)}
+            .small{font-size:13px;color:var(--muted)}
+            .badge{display:inline-block;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03);font-size:12px;color:var(--muted)}
+            footer{margin-left:auto;text-align:right}
+            @media (max-width:520px){.card{padding:18px;gap:16px}.icon{flex-basis:68px;height:68px}h1{font-size:18px}}
+        </style>
+
+        <main class="card" role="main">
+            <div class="icon" aria-hidden>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M2 2l20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".24"/>
+                    <path d="M16.72 11.06a6.5 6.5 0 00-1.02-1.12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 7a10 10 0 018.94 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+                    <path d="M8.53 8.53A6.5 6.5 0 0112 5c2.28 0 4.33.98 5.79 2.56" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="16" r="2" fill="currentColor"/>
+                </svg>
+            </div>
+
+            <div style="flex:1;min-width:0">
+                <div style="display:flex;gap:8px;align-items:center">
+                    <h1>You're offline</h1>
+                    <span class="badge">Offline</span>
+                </div>
+                <p class="small">It looks like your network connection is unavailable. Please check your connection and try again.</p>
+            </div>
+        </main>
+    </body>
+</html>

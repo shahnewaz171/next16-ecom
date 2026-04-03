@@ -6,6 +6,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { CartProvider } from '@/store/context/CartContext';
 import { BoundaryProvider } from '@/components/core/BoundaryProvider';
 import NotificationProvider from '@/components/core/NotificationProvider';
+import ServiceWorkerRegistration from '@/components/core/ServiceWorkerRegistration';
 import ThemeScript from '@/components/core/ThemeScript';
 import WebVitals from '@/components/core/WebVitals';
 import Footer from '@/components/layouts/Footer';
@@ -64,6 +65,7 @@ export default function RootLayout({
           </NotificationProvider>
         </NuqsAdapter>
 
+        <ServiceWorkerRegistration />
         <WebVitals />
       </body>
     </html>
