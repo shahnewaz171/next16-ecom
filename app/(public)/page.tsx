@@ -1,7 +1,7 @@
-import { ArrowRight } from 'lucide-react';
 import { cacheTag } from 'next/cache';
 import Link from 'next/link';
 import { Suspense } from 'react';
+import HydrationBridge from '@/components/core/HydrationBridge';
 import Button from '@/components/ui/Button';
 import { ProductGridSkeleton, ShopByCategorySkeleton } from '@/components/ui/skeleton';
 import {
@@ -10,6 +10,7 @@ import {
 } from '@/features/authentication/components/SpecialOfferBanner';
 import { getCategories } from '@/features/category/category-services';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
+import ShopNowButton from '@/features/products/components/ShopNowButton';
 import { getFeaturedProducts } from '@/features/products/product-services';
 
 export default function HomePage() {
@@ -25,16 +26,9 @@ export default function HomePage() {
           pre-rendering and advanced caching
         </p>
         <div>
-          <Link href="/products">
-            <Button
-              size="xl"
-              variant="gradient"
-              icon={<ArrowRight className="h-5 w-5" />}
-              iconPosition="right"
-            >
-              Shop Now
-            </Button>
-          </Link>
+          <HydrationBridge>
+            <ShopNowButton />
+          </HydrationBridge>
         </div>
       </section>
 
